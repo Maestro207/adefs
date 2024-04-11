@@ -17,13 +17,7 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: white;
 }
 
 .header{
@@ -32,6 +26,20 @@ body {
   widht: 100%;
 }
 
+.module{
+  height: 10vh;
+  aspect-ratio: 1;
+  background-color: white;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 4px;
+  margin: 4px;
+  border-radius: 16px;
+}
 @layer utilities {
   .text-balance {
     text-wrap: balance;

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Sample from "./Sample";
-
+import { model } from "./models"
 export default function Home() {
   // return (
   //   <main className="flex min-h-screen flex-col items-center justify-between p-24">
@@ -111,12 +111,33 @@ export default function Home() {
   //     </div>
   //   </main>
   // );
-  const content = ['a', 'b', 'c']
-
+  const content: Array<model> = [{
+    'title' : "ABAKADA",
+    'desc': "BURAT",
+  },
+  {
+    'title' : "AIDJOA*W",
+    'desc': "DROGA",
+  },{
+    'title' : "ABAKADA",
+    'desc': "BURAT",
+  },
+  {
+    'title' : "AIDJOA*W",
+    'desc': "DROGA",
+  },{
+    'title' : "ABAKADA",
+    'desc': "BURAT",
+  },
+  {
+    'title' : "AIDJOA*W",
+    'desc': "DROGA",
+  }]
+  
   return(
-    <main>
+    <main className="gap-8">
       {content.map((s, i) => 
-        <div key={i}>{s}</div>
+        <Sample {...s} key={i}/>
       )}
     </main>
   );
