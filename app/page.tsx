@@ -111,17 +111,13 @@ export default function Home() {
   //     </div>
   //   </main>
   // );
-  const content = () => {
-    let rows = []
-    for(let i=0; i<10; i++){
-      rows.push(<Sample key={i}/>)
-    }
-    return rows
-  }
+  const content = ['a', 'b', 'c']
 
   return(
     <main>
-      {content()}
+      {content.map((s, i) => 
+        <div key={i}>{s}</div>
+      )}
     </main>
   );
 }
