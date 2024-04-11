@@ -116,7 +116,7 @@ export default function Home() {
     for(let i=0; i<10; i++){
       rows.push(<Sample key={i}/>)
     }
-    return <div>{rows}</div>
+    return rows
   }
 
   return(
