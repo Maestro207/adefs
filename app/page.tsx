@@ -38,14 +38,14 @@ export default function Home() {
     await supabase.auth.signOut()
     let {data, error} = await supabase.auth.getSession()
     if(data){
-      setSession(false)
+      updateSession(false)
     }
   }
   const isSession = async () => {
     let {data, error} = await supabase.auth.getSession()
     console.log(data["session"])
     if(data["session"]){
-      setSession(true)
+      updateSession(true)
     }
   }
   const getURL = () => {
@@ -69,9 +69,9 @@ export default function Home() {
     console.log(data)
   }
 
-  const [session, setSession] = useState(false)
-  const useSession = (val: boolean) => {
-    setSession(val)
+  const [session, updateSession] = useState(false)
+  const setSession = (val: boolean) => {
+    updateSession(val)
   }
 
   useEffect(() => {
@@ -85,7 +85,7 @@ export default function Home() {
     <main className="gap-8">
       <SessionProvider.Provider value={{
         session,
-        useSession
+        setSession
       }}>
         <section>
           ASDASD

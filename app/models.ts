@@ -5,5 +5,5 @@ export type model = {
 
 export type sessionContextType = {
     session: boolean,
-    useSession: (val: boolean) => void
+    setSession: (val: boolean) => void
 } 

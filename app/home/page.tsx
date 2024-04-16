@@ -1,20 +1,18 @@
 'use client'
 
-import { useContext, useEffect } from "react"
+import { useContext } from "react"
 import { supabase } from "../client"
 import { SessionProvider } from "../providers"
-import { sessionContextType } from "../models"
-import { redirect } from "next/navigation"
 import { useRouter } from "next/navigation"
 
 export default function Home() {
-    const { session, useSession } = useContext(SessionProvider)      
+    const { session, setSession } = useContext(SessionProvider)      
     const router = useRouter()
     
     const signout = async () => {
         await supabase.auth.signOut()
         console.log("Asdasd")
-        useSession(false)
+        setSession(false)
         router.push('/')
       }
     
