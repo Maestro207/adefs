@@ -8,11 +8,12 @@ import { useRouter } from "next/navigation"
 export default function Home() {
     const { session, setSession } = useContext(SessionProvider)      
     const router = useRouter()
-    router.push('/')
+    
     
     const signout = async () => {
         await supabase.auth.signOut()
         setSession(false)
+        router.push('/')
       }
     
 
