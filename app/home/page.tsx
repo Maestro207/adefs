@@ -11,7 +11,6 @@ export default function Home() {
     
     const signout = async () => {
         await supabase.auth.signOut()
-        console.log("Asdasd")
         setSession(false)
         router.push('/')
       }
