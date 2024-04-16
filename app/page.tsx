@@ -57,6 +57,7 @@ export default function Home() {
     url = url.includes('http') ? url : `https://${url}`
     // Make sure to include a trailing `/`.
     url = url.charAt(url.length - 1) === '/' ? url : `${url}/`
+    console.log(process.env.NEXT_PUBLIC_SITE_URL)
     return url
   }
   const withGoogle = async () => {
