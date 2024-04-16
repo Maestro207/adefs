@@ -1,13 +1,11 @@
 'use client'
-
 import Sample from "./Sample";
 import { model } from "./models"
 import { supabase } from "./client";
-import { Auth } from "@supabase/auth-ui-react";
-import { ThemeSupa } from "@supabase/auth-ui-shared";
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { redirect } from "next/navigation";
 import { SessionProvider } from "./providers";
+import { put } from "@vercel/blob";
 
 export default function Home() {
   
@@ -57,10 +55,12 @@ export default function Home() {
     url = url.includes('http') ? url : `https://${url}`
     // Make sure to include a trailing `/`.
     url = url.charAt(url.length - 1) === '/' ? url : `${url}/`
-    console.log(process.env.NEXT_PUBLIC_SITE_URL)
+
     return url
   }
   const withGoogle = async () => {
+    const url = getURL()
+    console.log(url)
     const {data, error} = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
@@ -82,25 +82,29 @@ export default function Home() {
     }
   }, [session])
 
+  const submit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    const formData = new FormData(event.currentTarget)
+    console.log(formData.get("file"))
+
+  }
+  const upload = async () => {
+    const { url } = await put('articles/blob.txt', 'Hello World!', { access: 'public' });
+    console.log(url)
+  }
   return(
     <main className="gap-8">
       <SessionProvider.Provider value={{
         session,
         setSession
       }}>
-        <section>
-          ASDASD
-        </section>
-          {testd}<br></br>
-          <button className="bg-green-500" onClick={() => {
-            isSession()
-            getData()
-          }}>UPDATE</button><br></br>
-          <button className="bg-red-100" onClick={signout}>SGN OUT</button>
-        <section>
-          adsADaDASd
-        </section>
-        <button onClick={withGoogle}>SIGN IN WITH GOOGLE</button>
+        <form onSubmit={submit}>
+          <label htmlFor="file">Select a file</label>
+          <input name="file" type="file" accept="application/pdf,application/msword,
+  application/vnd.openxmlformats-officedocument.wordprocessingml.document"></input>
+          <input name="submit" type="submit"></input>
+        </form>
+        <button onClick={upload}>UPLOAD</button>
       </SessionProvider.Provider>
     </main>
   );
