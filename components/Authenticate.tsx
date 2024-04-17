@@ -1,6 +1,6 @@
 
-import { model } from "./models";
-import { supabase } from "./client"
+import { model } from "../utils/models";
+import { supabase } from "../utils/client"
 import { Database } from "../types/supabase"
 
 export default function Sample(content: Database["public"]["Tables"]["notes"]) {
