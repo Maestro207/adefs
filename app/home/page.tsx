@@ -1,8 +1,8 @@
 'use client'
 
 import { useContext } from "react"
-import { supabase } from "@utils/client"
-import { SessionProvider } from "@utils/providers"
+import { supabase } from "@/util/client"
+import { SessionProvider } from "@/util/providers"
 import { useRouter } from "next/navigation"
 
 export default function Home() {

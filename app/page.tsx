@@ -1,10 +1,10 @@
 'use client'
 import Sample from "../components/Authenticate";
-import { model } from "../utils/models"
-import { supabase } from "../utils/client";
+import { model } from "../util/models"
+import { supabase } from "../util/client";
 import { FormEvent, useEffect, useState } from "react";
 import { redirect } from "next/navigation";
-import { SessionProvider } from "../utils/providers";
+import { SessionProvider } from "../util/providers";
 import { put } from "@vercel/blob";
 
 export default function Home() {
