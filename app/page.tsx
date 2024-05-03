@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react"
 
+import "@/app/burat.css"
+
 function Home() {
   
   const [msg, setMsg] = useState("");
@@ -24,7 +26,7 @@ function Home() {
   }
   
   return(
-    <div>
+    <div className="burat">
       <form action={signIn}>
         <label htmlFor="email">EMAIL</label>
         <input name="email" type="text" className="border-2"></input>
