@@ -9,10 +9,15 @@ import { useEffect, useState } from "react";
 import { redirect } from "next/navigation";
 import { SessionProvider } from "./providers";
 
+import "@/app/burat.css"
+
 export default function Home() {
 
 
   return(
-    <>Maintenance</>
+    <div className="tite">
+      <div className="burat bg-pink-500">Maintenance</div>
+      <div> banana</div>
+    </div>
   );
 }
