@@ -1,23 +1,41 @@
 'use client'
 
-import Sample from "./Sample";
-import { model } from "./models"
-import { supabase } from "./client";
-import { Auth } from "@supabase/auth-ui-react";
-import { ThemeSupa } from "@supabase/auth-ui-shared";
-import { useEffect, useState } from "react";
-import { redirect } from "next/navigation";
-import { SessionProvider } from "./providers";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { FormEvent, useState } from "react"
 
-import "@/app/burat.css"
+function Home() {
+  
+  const [msg, setMsg] = useState("");
+  const router = useRouter()
 
-export default function Home() {
+  const signIn = async (data: FormData) => {
+    const response = await fetch('api/auth/login', {
+      method: "POST",
+      body: data,
 
-
+    })
+    const res = await response.json()
+    const ress = JSON.stringify(res)
+    setMsg(ress)
+    if(res.data.session){
+      router.push("/home")
+    }
+  }
+  
   return(
-    <div className="tite">
-      <div className="burat bg-pink-500">Maintenance</div>
-      <div> banana</div>
+    <div>
+      <form action={signIn}>
+        <label htmlFor="email">EMAIL</label>
+        <input name="email" type="text" className="border-2"></input>
+        <label htmlFor="password">PASSWORD</label>
+        <input name="password" type="password" className="border-2"></input>
+        <button type="submit">Submit</button>
+      </form>
+      <Link href="/register">REGISTER</Link>
+      {msg}
     </div>
-  );
+  )
 }
+
+export default Home;
