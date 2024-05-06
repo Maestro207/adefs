@@ -1,9 +1,9 @@
 'use client'
-import { model } from "@/util/models"
-import { supabase } from "@/util/client";
+import { model } from "@/utils/models"
+import { supabase } from "@/utils/supabase/client";
 import { FormEvent, useEffect, useState } from "react";
 import { redirect } from "next/navigation";
-import { SessionProvider } from "@/util/providers";
+import { SessionProvider } from "@/utils/providers";
 import { put } from "@vercel/blob";
 
 export default function Home() {
