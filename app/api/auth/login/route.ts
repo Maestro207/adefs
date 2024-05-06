@@ -1,9 +1,11 @@
-import { supabase } from "@/util/client";
+import { createClient } from "@/utils/supabase/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(req: Request){
-    const creds = await req.formData()
-    const email = creds.get('email')
-    const password = creds.get('password')
+export async function POST(req: NextRequest){
+    const supabase = createClient()
+    const form = await req.formData()
+    const email = form.get('email')
+    const password = form.get('password')
 
     if(typeof email != 'string' || typeof password != 'string' ){
         return Response.json({error : "Empty Shit bro"})
@@ -13,6 +15,6 @@ export async function POST(req: Request){
         email: email,
         password: password,
     })
-    console.log({data, error})
-    return Response.json({ data, error })
+
+    return NextResponse.json({ data, error })
 }

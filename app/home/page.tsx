@@ -1,22 +1,29 @@
 'use client'
 
-import { useContext, useEffect } from "react"
-import { supabase } from "@/util/client"
-import { SessionProvider } from "@/util/providers"
-import { useRouter } from "next/navigation"
+import { check } from "@/lib/test";
+import { createClient } from "@/utils/supabase/client";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
-    const { session, setSession } = useContext(SessionProvider)      
+    const supabase = createClient()
     const router = useRouter()
-    
-    const signout = async () => {
-        await supabase.auth.signOut()
-        setSession(false)
+	const signout = async () => {
+		const res = await fetch("api/auth/logout", { method: "POST", body: "" });
         router.push('/')
-      }
-    
+	};
 
-    return (
-        <div>LOGIN SUCCESSFUL<br></br><button className="bg-yellow-500" onClick={signout}>SIGN OUT</button></div>
-    )
+	return (
+		<div>
+			LOGIN SUCCESSFUL<br></br>
+			<button className="bg-yellow-500" onClick={signout}>
+				SIGN OUT
+			</button>
+            <button onClick={async () => {
+                const val = await supabase.auth.getUser()
+                console.log(val)
+            }}>
+                CHECK
+            </button>
+		</div>
+	);
 }

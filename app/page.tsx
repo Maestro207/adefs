@@ -1,13 +1,15 @@
 'use client'
 
+import { check } from "@/lib/test";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { FormEvent, useState } from "react"
+import { useState } from "react"
 
 import "@/app/burat.css"
 
 function Home() {
-  
+  // const supabase = createClient()
+
   const [msg, setMsg] = useState("");
   const router = useRouter()
 
@@ -18,10 +20,13 @@ function Home() {
 
     })
     const res = await response.json()
-    const ress = JSON.stringify(res)
-    setMsg(ress)
-    if(res.data.session){
-      router.push("/home")
+
+    console.log(res)
+
+    if(res.error){
+      setMsg(JSON.stringify(res.error))
+    }else{
+      router.push('/home')
     }
   }
   
@@ -29,11 +34,17 @@ function Home() {
     <div className="burat">
       <form action={signIn}>
         <label htmlFor="email">EMAIL</label>
-        <input name="email" type="text" className="border-2"></input>
+        <input name="email" type="text" className="border-2" required/>
         <label htmlFor="password">PASSWORD</label>
-        <input name="password" type="password" className="border-2"></input>
+        <input name="password" type="password" className="border-2" required/>
         <button type="submit">Submit</button>
       </form>
+      <button onClick={async () => {
+                const userData = await check();
+                console.log(userData)
+            }}>
+                CHECK
+            </button>
       <Link href="/register">REGISTER</Link>
       {msg}
     </div>
