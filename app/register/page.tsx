@@ -20,7 +20,7 @@ export default function SignUp() {
 		if (res.error) {
 			setMsg("Error register")
 		}else{
-			// router.push("/home");
+			router.push("/home");
 		}
 	};
 	const teacherRegister = async (data: FormData) => {
@@ -33,7 +33,7 @@ export default function SignUp() {
 		if (res.error) {
 			setMsg(JSON.stringify(res))
 		}else{
-			// router.push("/home");
+			router.push("/home");
 		}
 	};
 

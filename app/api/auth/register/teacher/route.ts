@@ -33,7 +33,6 @@ export async function POST(req: NextRequest) {
 					.from("teacher")
 					.insert([{ course: course }])
 					.select();
-                    console.log(data, error)
                 
                     await supabase
 					.from("user")
@@ -46,7 +45,6 @@ export async function POST(req: NextRequest) {
 						},
 					])
 					.select();
-                    console.log(data, error)
 			}
         }catch(error_msg){
                     

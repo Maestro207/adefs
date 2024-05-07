@@ -34,8 +34,6 @@ function Home() {
     })
     const res = await response.json()
 
-    console.log(res)
-
     if(res.error){
       if(res.error.status == 400){
         setMsg("No Existing Account yet!")

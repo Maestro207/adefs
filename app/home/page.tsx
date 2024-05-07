@@ -39,7 +39,6 @@ export default function Home() {
 			<button
 				onClick={async () => {
 					const val = await supabase.auth.getUser();
-					console.log(val);
 				}}
 			>
 				CHECK
