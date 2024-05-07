@@ -3,45 +3,105 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+	--foreground-rgb: 0, 0, 0;
+	--background-start-rgb: 214, 219, 220;
+	--background-end-rgb: 255, 255, 255;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+	:root {
+		--foreground-rgb: 255, 255, 255;
+		--background-start-rgb: 0, 0, 0;
+		--background-end-rgb: 0, 0, 0;
+	}
 }
 
 body {
-  background: white;
+	background: white;
 }
 
-.header{
-  background-color: red;
-  height: 20vh;
-  widht: 100%;
+.header {
+	background-color: red;
+	height: 20vh;
+	widht: 100%;
 }
 
-.module{
-  height: 10vh;
-  aspect-ratio: 1;
-  background-color: white;
-  justify-content: center;
-  align-items: center;
-  color: black;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  padding: 4px;
-  margin: 4px;
-  border-radius: 16px;
+.module {
+	height: 10vh;
+	aspect-ratio: 1;
+	background-color: white;
+	justify-content: center;
+	align-items: center;
+	color: black;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	padding: 4px;
+	margin: 4px;
+	border-radius: 16px;
 }
+
+#login{
+	background-image: url("../assets/bg.png");
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+#register {
+	background-image: url("../assets/bg.png");
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+.regCard {
+	/* From https://css.glass */
+/* From https://css.glass */
+background: rgba(56, 56, 56, 0.4);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+border: 1px solid rgba(56, 56, 56, 0.3);
+}
+
+.loginCard {
+	/* From https://css.glass */
+/* From https://css.glass */
+background: rgba(32, 32, 32, .2);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+border: 1px solid rgba(56, 56, 56, 0.3);
+}
+
+
+.submit{
+	font-size: 1.35em;
+	border-radius: 1em;
+	color: white;	
+	border-width: 2px;
+	padding: .5em;
+	margin-top: 1.25em;
+	font-weight: light;
+	background-color: rgba(202, 0, 0, .75);
+}
+
+input, select{
+	height: 3em;
+	background-color: white;
+	border-radius: 1em;
+	border-color: #888899;
+	box-shadow: inset 1px 1px 16px 1px #ddddee;
+}
+
+input{
+	padding: 2.5px;
+}
+
+label{
+	font-weight: lighter;
+	font-size: 1.25em;
+}
+
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+	.text-balance {
+		text-wrap: balance;
+	}
 }
