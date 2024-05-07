@@ -17,6 +17,7 @@ export async function POST(request: Request): Promise<NextResponse> {
         // Otherwise, you're allowing anonymous uploads.
  
         return {
+          addRandomSuffix: false,
           allowedContentTypes: ['application/pdf','application/msword',
           'application/vnd.openxmlformats-officedocument.wordprocessingml.document'],
           tokenPayload: JSON.stringify({

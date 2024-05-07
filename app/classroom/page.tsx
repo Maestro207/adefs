@@ -1,6 +1,6 @@
 'use client'
 import { model } from "@/utils/models"
-import { supabase } from "@/utils/supabase/client";
+import { createClient } from "@/utils/supabase/client";
 import { FormEvent, useEffect, useState } from "react";
 import { redirect } from "next/navigation";
 import { SessionProvider } from "@/utils/providers";
@@ -21,6 +21,8 @@ export default function Home() {
   }]
   
   const [testd, setData] = useState('')
+
+  const supabase = createClient()
 
   const getData = async () => {
 
