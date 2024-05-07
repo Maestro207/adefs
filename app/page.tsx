@@ -8,6 +8,8 @@ import { useCallback, useEffect, useState } from "react"
 
 import "@/app/globals.css"
 
+import "@/app/burat.css"
+
 function Home() {
   const supabase = createClient()
   const confirmUser = useCallback(async () => {
