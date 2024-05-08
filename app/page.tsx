@@ -19,10 +19,6 @@ function Home() {
 		}
 	}, [supabase])
 
-	useEffect(() => {
-		confirmUser()
-	}, [])
-
   const [msg, setMsg] = useState("");
   const router = useRouter()
 
@@ -33,8 +29,6 @@ function Home() {
 
     })
     const res = await response.json()
-
-    console.log(res)
 
     if(res.error){
       if(res.error.status == 400){
@@ -47,8 +41,8 @@ function Home() {
   
   return(
     <main id="login" className=" h-[100vh] flex justify-center items-center">
-      <section className="loginCard gap-y-4 p-8 flex flex-col justify-stretch align-middle rounded-3xl h-auto w-[36vw]">
-				<div className="flex flex-col p-8 h-auto bg-white border-2 rounded-2xl w-auto justify-between align-middle transition-all ease-in">
+      <section className="loginCard gap-y-4 p-2 md:p-8 flex flex-col justify-stretch align-middle rounded-3xl h-auto  w-[90vw] md:w-[56vw] lg:w-[40vw]">
+				<div className="flex flex-col p-2 md:p-8 h-auto bg-white border-2 rounded-2xl w-auto justify-between align-middle transition-all ease-in">
 					<span className="flex justify-center align-middle text-2xl">LOGIN</span>  
           <span className="h-[2rem]">
             {msg}
@@ -56,7 +50,7 @@ function Home() {
 					
 						<form
 							action={signIn}
-							className="flex flex-col p-8 justify-center"
+							className="flex flex-col p-2 md:p-8 justify-center"
 						>
 							<label htmlFor="email">EMAIL</label>
 							<input name="email" type="email" className="border-2" required />

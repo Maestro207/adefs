@@ -41,7 +41,6 @@ export async function POST(req: NextRequest) {
 					.from("student")
 					.insert([{ course: course, level: year_level }])
 					.select();
-                    console.log(data, error)
                 
                     await supabase
 					.from("user")
@@ -54,7 +53,7 @@ export async function POST(req: NextRequest) {
 						},
 					])
 					.select();
-                    console.log(data, error)
+
 			}
 		} catch (error_msg) {
 			return NextResponse.json({ data: null, error: error_msg });
