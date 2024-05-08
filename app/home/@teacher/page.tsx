@@ -11,7 +11,13 @@ export default function Teacher() {
 
 	const inputFileRef = useRef<HTMLInputElement>(null);
 	const [blob, setBlob] = useState<PutBlobResult | null>(null);
-	const [uploads, setUploads] = useState<null | []>(null);
+	const [uploads, setUploads] = useState<null | [] | [
+		{
+			filename: string,
+			name: string,
+			url: string
+		}
+	]>(null);
 	const [user, setUser] = useState("");
 	const msg = useRef("");
 
@@ -76,8 +82,8 @@ export default function Teacher() {
 								method: "POST",
 							});
 							setBlob(newBlob);
-							const updated = uploads?.slice();
-							updated?.push(data);
+							const updated = uploads
+							updated?.push((data as never));
 							setUploads(updated);
 							msg.current = "Uploaded!";	
 						} else {

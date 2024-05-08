@@ -10,7 +10,13 @@ export default function Student() {
 	const supabase = createClient();
 
 	const inputFileRef = useRef<HTMLInputElement>(null);
-	const [downloads, setDownloads] = useState<null | []>(null);
+	const [downloads, setDownloads] = useState<null | [] | [
+		{
+			filename: string,
+			name: string,
+			url: string
+		}
+	]>(null);
 	const [user, setUser] = useState("");
 	const msg = useRef("");
 
