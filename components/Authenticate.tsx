@@ -4,7 +4,8 @@ import { createClient } from "@/utils/supabase/client"
 import { Database } from "../types/supabase"
 
 export default function Sample(content: Database["public"]["Tables"]["notes"]) {
-  const supabase = createClient()
+  const supabase = createClient();
+
   const login = async () => {
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
