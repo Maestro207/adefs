@@ -81,11 +81,20 @@ border: 1px solid rgba(56, 56, 56, 0.3);
 	background-color: rgba(202, 0, 0, .75);
 }
 
+#logo{
+	background-image: url("../assets/img/logo.png");
+	background-size: cover;
+	background-repeat: no-repeat;
+	width: 64px;
+	height: 64px;
+	border-radius: 9999px;
+}
+
 #register input, #login input, select{
-	height: 2rem;
+	height: 2.5rem;
 	text-size: 1.25rem;
 	background-color: white;
-	border-radius: 1em;
+	border-radius: 8px;
 	border-color: #888899;
 	padding-left: 8px;
 	padding-right: 8px;

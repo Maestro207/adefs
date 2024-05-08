@@ -18,7 +18,8 @@ export default function SignUp() {
 		});
 		const res = await response.json();
 		if (res.error) {
-			setMsg(JSON.stringify(res.error));
+			setMsg("Register Failed");
+			setLoading(false)
 		}else{
 			setMsg("Registerd Successfully")
 		}
@@ -32,9 +33,11 @@ export default function SignUp() {
 		});
 		const res = await response.json();
 		if (res.error) {
-			setMsg(JSON.stringify(res.error));
+			setMsg("Register Failed");
+			setLoading(false)
 		}else{
 			setMsg("Registerd Successfully")
+			setLoading(false)
 		}
 		
 	};
@@ -121,7 +124,7 @@ export default function SignUp() {
 							/>
 							<button type="submit" className="submit" onClick={() => {setMsg("");setTimeout(() => {
 								setLoading(true)
-							}, 1000);}} disabled={loading}>
+							}, 100);}} disabled={loading}>
 								Submit
 							</button>
 						</form>
@@ -143,7 +146,9 @@ export default function SignUp() {
 								className="border-2"
 								required
 							/>
-							<button type="submit" className="submit" onClick={() => {setMsg("")}} disabled={loading}>
+							<button type="submit" className="submit" onClick={() => {setMsg("");setTimeout(() => {
+								setLoading(true)
+							}, 100);}} disabled={loading}>
 								Submit
 							</button>
 						</form>
