@@ -51,6 +51,6 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({data: null, error: error_msg})
         }
 	}
-
+	supabase.auth.signOut();
 	return NextResponse.json({ data, error });
 }
