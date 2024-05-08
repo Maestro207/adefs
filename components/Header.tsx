@@ -12,7 +12,7 @@ export default function Header() {
 	};
 
     return (
-        <div className="sticky top-0 left-0 w-full bg-[#222222] text-white h-[6.4rem] flex items-center justify-end p-8">
+        <div className="sticky top-0 left-0 w-full bg-[#0c0c0c] text-white h-[6.4rem] flex items-center justify-end p-8">
             <button className="bg-red-500 font-bold p-2 rounded-full" onClick={signout}>
 				SIGN OUT
 			</button>

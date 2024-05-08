@@ -28,8 +28,9 @@ export default function HomeLayout({
 
 		if(res.error){
 			router.push('/')
+		}else{
+			setRole(res.data[0].role)
 		}
-		setRole(res.data[0].role)
 
 	}, [supabase])
 

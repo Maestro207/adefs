@@ -81,7 +81,7 @@ border: 1px solid rgba(56, 56, 56, 0.3);
 	background-color: rgba(202, 0, 0, .75);
 }
 
-input, select{
+#register input, #login input, select{
 	height: 3rem;
 	background-color: white;
 	border-radius: 1em;
@@ -90,11 +90,11 @@ input, select{
 	margin-bottom: 1.25em;
 }
 
-input{
+#register input, #login input{
 	padding: 2.5px;
 }
 
-label{
+#register label, #login label{
 	font-weight: lighter;
 	font-size: 1.25em;
 }
