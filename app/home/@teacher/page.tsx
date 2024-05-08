@@ -74,7 +74,7 @@ export default function Teacher() {
 		<main className="bg-none h-[100vh] p-8 z-10	">
 			
 			<span className="text-[4em] font-light block relative w-auto h-auto">
-				<h1 className="">Welcome! {user}</h1>
+				<h1 className=" capitalize">Welcome! {user}</h1>
 			</span>
 			<div className="p-8 border-t-[1px] border-gray-400">
 				<h1 className="text-3xl border-gray-800">
