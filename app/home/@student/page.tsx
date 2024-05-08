@@ -77,7 +77,7 @@ export default function Student() {
 					className="p-2 border-gray-300 border-[1px] rounded-lg"
 					></input>
 				</span>
-				<div className="flex flex-wrap gap-8 m-8 p-8 rounded-3xl border-2 bg-slate-100 border-gray-200">
+				<div className="flex flex-wrap justify-center items-center gap-8 m-2 p-2 lg:m-8 lg:p-8 rounded-3xl border-2 bg-slate-100 border-gray-200">
 					{downloads == null
 						? "Loading"
 						: downloads.length == 0
