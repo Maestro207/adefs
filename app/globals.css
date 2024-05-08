@@ -81,6 +81,12 @@ border: 1px solid rgba(56, 56, 56, 0.3);
 	background-color: rgba(202, 0, 0, .75);
 }
 
+.dashboard{
+	background-image: url("../assets/img/bg.png");
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
 #logo{
 	background-image: url("../assets/img/logo.png");
 	background-size: cover;

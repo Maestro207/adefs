@@ -1,6 +1,6 @@
 "use client";
 
-import File from "@/components/FileCard";
+import File from "@/components/UploadCard";
 import { createClient } from "@/utils/supabase/client";
 import { PutBlobResult } from "@vercel/blob";
 import { upload } from "@vercel/blob/client";
@@ -11,15 +11,39 @@ export default function Teacher() {
 
 	const inputFileRef = useRef<HTMLInputElement>(null);
 	const [blob, setBlob] = useState<PutBlobResult | null>(null);
-	const [message, setMessage] = useState("")
-	const [uploads, setUploads] = useState<null | [] | [
-		{
-			filename: string,
-			name: string,
-			url: string
-		}
-	]>(null);
+	const [message, setMessage] = useState("");
+	const [uploads, setUploads] = useState<
+		| null
+		| []
+		| [
+				{
+					filename: string;
+					name: string;
+					url: string;
+				}
+		  ]
+		| {
+				filename: string;
+				name: string;
+				url: string;
+		  }[]
+	>(null);
 	const [user, setUser] = useState("");
+
+	const deleteFile = async (url: string) => {
+		const res = await fetch("/api/module/delete", {
+			method: "DELETE",
+			body: JSON.stringify({
+				url: url,
+			}),
+		});
+		const updated = uploads?.filter((val) => {
+			return val.url != url;
+		});
+		if (typeof updated != "undefined") {
+			setUploads(updated);
+		}
+	};
 
 	const getUploads = useCallback(async () => {
 		const res = await (
@@ -28,10 +52,10 @@ export default function Teacher() {
 
 		if (!res.error) {
 			setUploads(res.data);
-		}else{
-			setUploads([])
+		} else {
+			setUploads([]);
 		}
-		console.log()
+		console.log();
 	}, [supabase]);
 
 	const getUser = useCallback(async () => {
@@ -47,12 +71,15 @@ export default function Teacher() {
 	}, [supabase]);
 
 	return (
-		<main className="bg-slate-50 h-[100vh] p-8 ">
+		<main className="bg-none h-[100vh] p-8 z-10	">
+			
 			<span className="text-[4em] font-light block relative w-auto h-auto">
 				<h1 className="">Welcome! {user}</h1>
 			</span>
 			<div className="p-8 border-t-[1px] border-gray-400">
-				<h1 className="text-3xl border-gray-800">Upload a Module (pdf only!)</h1>
+				<h1 className="text-3xl border-gray-800">
+					Upload a Module (pdf only!)
+				</h1>
 			</div>
 			<form
 				onSubmit={async (event) => {
@@ -76,29 +103,34 @@ export default function Teacher() {
 							const data = {
 								url: newBlob.url,
 								filename: file.name,
-								name: user
-							}
+								name: user,
+							};
 							const res = await fetch("/api/module/update", {
 								body: JSON.stringify(data),
 								method: "POST",
 							});
 							setBlob(newBlob);
-							const updated = uploads
-							updated?.push((data as never));
+							const updated = uploads;
+							updated?.push(data as never);
 							setUploads(updated);
-							setMessage("File Uploaded")
+							setMessage("File Uploaded");
 						} else {
 							setMessage("Upload Failed");
 						}
 					} catch (error) {
-						if((error as Error).message == "Vercel Blob: Failed to  retrieve the client token"){
+						if (
+							(error as Error).message ==
+							"Vercel Blob: Failed to  retrieve the client token"
+						) {
 							setMessage("Upload Failed, Incorrect file type");
-						}else{
-							setMessage("Upload Failed, the file already exists or you are not authorized")
+						} else {
+							setMessage(
+								"Upload Failed, the file already exists or you are not authorized"
+							);
 						}
-					}finally{
+					} finally {
 						setTimeout(() => {
-							setMessage("")
+							setMessage("");
 						}, 5000);
 					}
 				}}
@@ -121,19 +153,22 @@ export default function Teacher() {
 			<div className="text-xl font-light p-8">{message}</div>
 			<div className="border-t-2 border-gray-400">
 				<h1 className="text-3xl p-8 text-gray-800">Your Modules</h1>
-				<div className="flex flex-wrap justify-center items-center gap-8 m-2 p-2 lg:m-8 lg:p-8 rounded-3xl border-2 border-gray-200">
+				<div className="flex flex-wrap justify-center items-center gap-8 m-2 p-2 lg:m-8 lg:p-8 rounded-3xl border-2 bg-slate-100 border-gray-200">
 					{uploads == null
 						? "Loading"
-						: uploads.length == 0 ? "No Modules" : uploads.map((file) => {
-							return (
-								<File
-									key={file.url}
-									name={file.name}
-									url={file.url}
-									filename={file.filename}
-								/>
-							);
-					  })}
+						: uploads.length == 0
+						? "No Modules"
+						: uploads.map((file) => {
+								return (
+									<File
+										key={file.url}
+										name={file.name}
+										url={file.url}
+										filename={file.filename}
+										callback={deleteFile}
+									/>
+								);
+						  })}
 				</div>
 			</div>
 		</main>

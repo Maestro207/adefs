@@ -39,13 +39,16 @@ export default function HomeLayout({
 	}, [])
 	
 	return (
-		<main>
+		<main className="relative">
 			<Header />
+			<div className="dashboard absolute z-0 h-[100vh] w-[100vw] opacity-[.075]"></div>
+			<div className="absolute z-10 w-[98vw] h-auto">
 			{
 				role == "teacher" ? teacher :
 				role == "student" ? student :
 				role == "admin" ? admin : children	
 			}
+			</div>
 		</main>
 	);
 }
