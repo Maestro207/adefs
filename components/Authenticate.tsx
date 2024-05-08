@@ -16,7 +16,6 @@ export default function Sample(content: Database["public"]["Tables"]["notes"]) {
         },
       },
     })
-    
   }
 	return (
           <div className="relative group m-4 p-4">

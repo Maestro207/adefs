@@ -1,6 +1,6 @@
 "use client";
 
-import File from "@/components/FileCard";
+import File from "@/components/DownloadCard";
 import { createClient } from "@/utils/supabase/client";
 import { PutBlobResult } from "@vercel/blob";
 import { upload } from "@vercel/blob/client";
