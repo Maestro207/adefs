@@ -46,29 +46,11 @@ export default function SignUp() {
 	return (
 		<main id="register" className=" h-[100vh] flex justify-center items-center">
 			<section className="regCard transition-all ease-in gap-y-4 p-2 md:p-2 flex flex-col justify-stretch align-middle rounded-3xl h-auto w-[90vw] md:w-[56vw] lg:w-[40vw]">
-				<span>
-					<button
-						className="bg-white border-black rounded-full border-[1px] p-2 w-auto"
-						onClick={() => {
-							router.push("/");
-						}}
-					>
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							height="24px"
-							viewBox="0 -960 960 960"
-							width="24px"
-							className="fill-black"
-						>
-							<path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z" />
-						</svg>
-					</button>
-				</span>
 				<span className="flex flex-row p-2 justify-center gap-8">
 					<button
 						className={`p-2 border-[1px] rounded-3xl w-full text-2xl font-light text-white ${
 							role != "STUDENT"
-								? "border-black bg-red-500 text-2xl font-light "
+								? "border-black bg-red-500 text-xl font-light "
 								: "border-gray-100"
 						} `}
 						onClick={() => {
@@ -79,7 +61,7 @@ export default function SignUp() {
 						TEACHER
 					</button>
 					<button
-						className={`p-2 border-[1px] rounded-3xl w-full text-2xl font-light text-white ${
+						className={`p-2 border-[1px] rounded-3xl w-full text-xl font-light text-white ${
 							role == "STUDENT"
 								? "border-black bg-red-500 "
 								: "border-gray-100"
@@ -155,6 +137,13 @@ export default function SignUp() {
 						</form>
 					)}
 				</div>
+				<button
+						className="bg-white rounded-lg p-2 w-auto"
+						onClick={() => {
+							router.push("/");
+						}}
+					>Have an Account? Click Here to Login.
+					</button>
 			</section>
 		</main>
 	);
