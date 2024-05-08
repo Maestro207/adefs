@@ -71,7 +71,8 @@ export default function Teacher() {
 	}, [supabase]);
 
 	return (
-		<main className="bg-slate-50 h-[100vh] p-8 ">
+		<main className="bg-none h-[100vh] p-8 z-10	">
+			
 			<span className="text-[4em] font-light block relative w-auto h-auto">
 				<h1 className="">Welcome! {user}</h1>
 			</span>
@@ -152,7 +153,7 @@ export default function Teacher() {
 			<div className="text-xl font-light p-8">{message}</div>
 			<div className="border-t-2 border-gray-400">
 				<h1 className="text-3xl p-8 text-gray-800">Your Modules</h1>
-				<div className="flex flex-wrap justify-center items-center gap-8 m-2 p-2 lg:m-8 lg:p-8 rounded-3xl border-2 border-gray-200">
+				<div className="flex flex-wrap justify-center items-center gap-8 m-2 p-2 lg:m-8 lg:p-8 rounded-3xl border-2 bg-slate-100 border-gray-200">
 					{uploads == null
 						? "Loading"
 						: uploads.length == 0
