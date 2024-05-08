@@ -52,7 +52,7 @@ export default function Teacher() {
 				<h1 className="">Welcome! {user}</h1>
 			</span>
 			<div className="p-8 border-t-[1px] border-gray-400">
-				<h1 className="text-3xl border-gray-800">Upload a Module</h1>
+				<h1 className="text-3xl border-gray-800">Upload a Module (pdf only!)</h1>
 			</div>
 			<form
 				onSubmit={async (event) => {
@@ -123,7 +123,7 @@ export default function Teacher() {
 			<div className="text-xl font-light p-8">{msg.current}</div>
 			<div className="border-t-2 border-gray-400">
 				<h1 className="text-3xl p-8 text-gray-800">Your Modules</h1>
-				<div className="flex gap-8 m-8 p-8 rounded-3xl border-2 border-gray-200">
+				<div className="flex flex-wrap justify-center items-center gap-8 m-2 p-2 lg:m-8 lg:p-8 rounded-3xl border-2 border-gray-200">
 					{uploads == null
 						? "Loading"
 						: uploads.length == 0 ? "No Modules" : uploads.map((file) => {

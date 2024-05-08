@@ -52,7 +52,7 @@ export default function Student() {
 			</span>
 			<div className="border-t-2 border-gray-400">
 				<h1 className="text-3xl p-8 text-gray-800">Your Modules</h1>
-				<div className="flex gap-8 m-8 p-8 rounded-3xl border-2 border-gray-200">
+				<div className="flex flex-wrap gap-8 m-8 p-8 rounded-3xl border-2 border-gray-200">
 					{downloads == null
 						? "Loading"
 						: downloads.length == 0

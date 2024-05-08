@@ -19,7 +19,6 @@ export default function SignUp() {
 		const res = await response.json();
 		if (res.error) {
 			setMsg(JSON.stringify(res.error));
-
 		}else{
 			setMsg("Registerd Successfully")
 		}
@@ -34,7 +33,6 @@ export default function SignUp() {
 		const res = await response.json();
 		if (res.error) {
 			setMsg(JSON.stringify(res.error));
-
 		}else{
 			setMsg("Registerd Successfully")
 		}
@@ -43,7 +41,7 @@ export default function SignUp() {
 
 	return (
 		<main id="register" className=" h-[100vh] flex justify-center items-center">
-			<section className="regCard transition-all ease-in gap-y-4 p-2 md:p-8 flex flex-col justify-stretch align-middle rounded-3xl h-auto w-[90vw] md:w-[56vw] lg:w-[40vw]">
+			<section className="regCard transition-all ease-in gap-y-4 p-2 md:p-2 flex flex-col justify-stretch align-middle rounded-3xl h-auto w-[90vw] md:w-[56vw] lg:w-[40vw]">
 				<span>
 					<button
 						className="bg-white border-black rounded-full border-[1px] p-2 w-auto"
@@ -64,7 +62,7 @@ export default function SignUp() {
 				</span>
 				<span className="flex flex-row p-2 justify-center gap-8">
 					<button
-						className={`p-8 border-[1px] rounded-3xl w-full text-2xl font-light text-white ${
+						className={`p-2 border-[1px] rounded-3xl w-full text-2xl font-light text-white ${
 							role != "STUDENT"
 								? "border-black bg-red-500 text-2xl font-light "
 								: "border-gray-100"
@@ -77,7 +75,7 @@ export default function SignUp() {
 						TEACHER
 					</button>
 					<button
-						className={`p-8 border-[1px] rounded-3xl w-full text-2xl font-light text-white ${
+						className={`p-2 border-[1px] rounded-3xl w-full text-2xl font-light text-white ${
 							role == "STUDENT"
 								? "border-black bg-red-500 "
 								: "border-gray-100"
@@ -90,14 +88,14 @@ export default function SignUp() {
 						STUDENT
 					</button>
 				</span>
-				<div className="flex flex-col p-2 md:p-8 h-auto bg-white border-2 rounded-2xl w-auto justify-between align-middle transition-all ease-in">
+				<div className="flex flex-col p-2 md:p-2 h-auto bg-white border-2 rounded-2xl w-auto justify-between align-middle transition-all ease-in">
 					<span className="flex justify-center align-middle text-3xl text-light pt-2">REGISTER</span>
-					<span className="h-[2rem]">{msg}</span>
-					<span className="h-[2rem]">{loading ? "Loading" : ""}</span>
+					<span className="h-[1.5rem]">{msg}</span>
+					<span className="h-[1.5rem]">{loading ? "Loading" : ""}</span>
 					{role == "STUDENT" ? (
 						<form
 							action={studentRegister}
-							className="flex flex-col p-2 md:p-8 justify-center"
+							className="flex flex-col p-2 md:p-2 justify-center"
 						>
 							<label htmlFor="email">EMAIL</label>
 							<input name="email" type="email" className="border-2" required />
@@ -121,14 +119,16 @@ export default function SignUp() {
 								className="border-2"
 								required
 							/>
-							<button type="submit" className="submit" onClick={() => {setMsg("")}} disabled={loading}>
+							<button type="submit" className="submit" onClick={() => {setMsg("");setTimeout(() => {
+								setLoading(true)
+							}, 1000);}} disabled={loading}>
 								Submit
 							</button>
 						</form>
 					) : (
 						<form
 							action={teacherRegister}
-							className="flex flex-col p-2 md:p-8 justify-center"
+							className="flex flex-col p-2 md:p-2 justify-center"
 						>
 							<label htmlFor="email">EMAIL</label>
 							<input name="email" type="email" className="border-2" required />

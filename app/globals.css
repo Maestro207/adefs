@@ -18,7 +18,7 @@
 
 body {
 	background: white;
-	font-size: clamp(1vh, 12px, 1vw);
+	font-size: 12px	;
 }
 
 .header {
@@ -82,10 +82,13 @@ border: 1px solid rgba(56, 56, 56, 0.3);
 }
 
 #register input, #login input, select{
-	height: 3rem;
+	height: 2rem;
+	text-size: 1.25rem;
 	background-color: white;
 	border-radius: 1em;
 	border-color: #888899;
+	padding-left: 8px;
+	padding-right: 8px;
 	box-shadow: inset 1px 1px 16px 1px #ddddee;
 	margin-bottom: 1.25em;
 }
