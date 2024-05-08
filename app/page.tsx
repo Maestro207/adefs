@@ -12,6 +12,7 @@ import "@/app/burat.css"
 
 function Home() {
   const supabase = createClient()
+  
   const confirmUser = useCallback(async () => {
 		const session = await supabase.auth.getUser()
 		if(!session.error){
@@ -21,6 +22,10 @@ function Home() {
 
   const [msg, setMsg] = useState("");
   const router = useRouter()
+
+  useEffect(() => {
+    confirmUser();
+  }, [])
 
   const signIn = async (data: FormData) => {
     const response = await fetch('api/auth/login', {
