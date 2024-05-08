@@ -11,6 +11,7 @@ export default function Teacher() {
 
 	const inputFileRef = useRef<HTMLInputElement>(null);
 	const [blob, setBlob] = useState<PutBlobResult | null>(null);
+	const [message, setMessage] = useState("")
 	const [uploads, setUploads] = useState<null | [] | [
 		{
 			filename: string,
@@ -19,7 +20,6 @@ export default function Teacher() {
 		}
 	]>(null);
 	const [user, setUser] = useState("");
-	const msg = useRef("");
 
 	const getUploads = useCallback(async () => {
 		const res = await (
@@ -57,7 +57,8 @@ export default function Teacher() {
 			<form
 				onSubmit={async (event) => {
 					event.preventDefault();
-					msg.current = "Uploading";
+
+					setMessage("Uploading");
 
 					if (!inputFileRef.current?.files) {
 						throw new Error("No file selected");
@@ -85,22 +86,19 @@ export default function Teacher() {
 							const updated = uploads
 							updated?.push((data as never));
 							setUploads(updated);
-							msg.current = "Uploaded!";	
+							setMessage("File Uploaded")
 						} else {
-							msg.current = "Upload Failed!";
+							setMessage("Upload Failed");
 						}
 					} catch (error) {
 						if((error as Error).message == "Vercel Blob: Failed to  retrieve the client token"){
-							msg.current =
-							"Upload Failed, Incorrect file type";
+							setMessage("Upload Failed, Incorrect file type");
 						}else{
-							msg.current =
-								"Upload Failed, the file already exists or you are not authorized";
+							setMessage("Upload Failed, the file already exists or you are not authorized")
 						}
-						console.log(msg.current)
 					}finally{
 						setTimeout(() => {
-							msg.current = "";
+							setMessage("")
 						}, 5000);
 					}
 				}}
@@ -115,12 +113,12 @@ export default function Teacher() {
 				<button
 					type="submit"
 					className="py-2 px-4 rounded-full bg-red-500 text-white border-gray-200 border-[1px]"
-					disabled={msg.current == "Uploading" ? true : false}
+					disabled={message == "Uploading" ? true : false}
 				>
 					Upload
 				</button>
 			</form>
-			<div className="text-xl font-light p-8">{msg.current}</div>
+			<div className="text-xl font-light p-8">{message}</div>
 			<div className="border-t-2 border-gray-400">
 				<h1 className="text-3xl p-8 text-gray-800">Your Modules</h1>
 				<div className="flex flex-wrap justify-center items-center gap-8 m-2 p-2 lg:m-8 lg:p-8 rounded-3xl border-2 border-gray-200">
