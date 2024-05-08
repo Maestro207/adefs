@@ -1,12 +1,21 @@
 import { createClient } from '@/utils/supabase/server';
 import { handleUpload, type HandleUploadBody } from '@vercel/blob/client';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
  
-export async function POST(request: Request): Promise<NextResponse> {
-  const data = (await request.json()) 
-  const filename = data.payload.pathname;
-  const body = data as HandleUploadBody;
+export async function POST(request: NextRequest): Promise<NextResponse> {
+  const file = (await request.json()) 
+  const body = file as HandleUploadBody;
   const supabase = createClient();
+
+  const { data, error } = await supabase
+    .from('module')
+    .select('filename')
+    .eq('filename', file.payload.pathname)
+
+  if(data && data.length >= 1){
+    throw new Error ("File Already exists")
+  }
+
   try {
     const jsonResponse = await handleUpload({
       body,
@@ -44,14 +53,7 @@ export async function POST(request: Request): Promise<NextResponse> {
           // Run any logic after the file upload completed
           // const { userId } = JSON.parse(tokenPayload);
           // await db.update({ avatar: blob.url, userId });
-          
-          const { data, error } = await supabase
-          .from('module')
-          .insert([
-            { uuid: (await supabase.auth.getUser()).data.user?.id, url: blob.url, filename: filename },
-          ])
-          .select()
-          console.log(data ,error )
+
         } catch (error) {
           throw new Error('Could not update user');
         }
