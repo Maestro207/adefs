@@ -22,6 +22,7 @@ export default function SignUp() {
 			setLoading(false)
 		}else{
 			setMsg("Registerd Successfully")
+			setLoading(false)
 		}
 	};
 
