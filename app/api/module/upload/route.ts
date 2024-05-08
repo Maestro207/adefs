@@ -1,9 +1,12 @@
+import { createClient } from '@/utils/supabase/server';
 import { handleUpload, type HandleUploadBody } from '@vercel/blob/client';
 import { NextResponse } from 'next/server';
  
 export async function POST(request: Request): Promise<NextResponse> {
-  const body = (await request.json()) as HandleUploadBody;
- 
+  const data = (await request.json()) 
+  const filename = data.payload.pathname;
+  const body = data as HandleUploadBody;
+  const supabase = createClient();
   try {
     const jsonResponse = await handleUpload({
       body,
@@ -15,7 +18,11 @@ export async function POST(request: Request): Promise<NextResponse> {
         // Generate a client token for the browser to upload the file
         // ⚠️ Authenticate and authorize users before generating the token.
         // Otherwise, you're allowing anonymous uploads.
- 
+        
+        if(!supabase.auth.getUser()){
+          throw new Error("Unauthorized Access!");
+        }
+
         return {
           addRandomSuffix: false,
           allowedContentTypes: ['application/pdf','application/msword',
@@ -37,6 +44,14 @@ export async function POST(request: Request): Promise<NextResponse> {
           // Run any logic after the file upload completed
           // const { userId } = JSON.parse(tokenPayload);
           // await db.update({ avatar: blob.url, userId });
+          
+          const { data, error } = await supabase
+          .from('module')
+          .insert([
+            { uuid: (await supabase.auth.getUser()).data.user?.id, url: blob.url, filename: filename },
+          ])
+          .select()
+          console.log(data ,error )
         } catch (error) {
           throw new Error('Could not update user');
         }

@@ -1,45 +1,49 @@
 "use client";
 
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import "@/app/globals.css";
 
 export default function SignUp() {
-	const [msg, setMsg] = useState("")
+	const [msg, setMsg] = useState("");
+	const [loading, setLoading] = useState(false);
 	const [role, setRole] = useState("");
 	const router = useRouter();
 
 	const studentRegister = async (data: FormData) => {
+
 		const response = await fetch("api/auth/register/student", {
 			method: "POST",
 			body: data,
-			// headers: { "Content-Type": "application/json" },
 		});
 		const res = await response.json();
 		if (res.error) {
-			setMsg("Error register")
+			setMsg(JSON.stringify(res.error));
+
 		}else{
-			router.push("/home");
+			setMsg("Registerd Successfully")
 		}
 	};
+
 	const teacherRegister = async (data: FormData) => {
+
 		const response = await fetch("api/auth/register/teacher", {
 			method: "POST",
 			body: data,
-			// headers: { "Content-Type": "application/json" },
 		});
 		const res = await response.json();
 		if (res.error) {
-			setMsg(JSON.stringify(res))
+			setMsg(JSON.stringify(res.error));
+
 		}else{
-			router.push("/home");
+			setMsg("Registerd Successfully")
 		}
+		
 	};
 
 	return (
 		<main id="register" className=" h-[100vh] flex justify-center items-center">
-			<section className="regCard gap-y-4 p-8 flex flex-col justify-stretch align-middle rounded-3xl h-auto w-[36vw]">
+			<section className="regCard transition-all ease-in gap-y-4 p-2 md:p-8 flex flex-col justify-stretch align-middle rounded-3xl h-auto w-[90vw] md:w-[56vw] lg:w-[40vw]">
 				<span>
 					<button
 						className="bg-white border-black rounded-full border-[1px] p-2 w-auto"
@@ -67,6 +71,7 @@ export default function SignUp() {
 						} `}
 						onClick={() => {
 							setRole("TEACHER");
+							setMsg("");
 						}}
 					>
 						TEACHER
@@ -79,18 +84,20 @@ export default function SignUp() {
 						} `}
 						onClick={() => {
 							setRole("STUDENT");
+							setMsg("");
 						}}
 					>
 						STUDENT
 					</button>
 				</span>
-				<div className="flex flex-col p-2 h-auto bg-white border-2 rounded-2xl w-auto justify-between align-middle transition-all ease-in">
-					<span className="flex justify-center align-middle text-2xl pt-2">REGISTER</span>
+				<div className="flex flex-col p-2 md:p-8 h-auto bg-white border-2 rounded-2xl w-auto justify-between align-middle transition-all ease-in">
+					<span className="flex justify-center align-middle text-3xl text-light pt-2">REGISTER</span>
 					<span className="h-[2rem]">{msg}</span>
+					<span className="h-[2rem]">{loading ? "Loading" : ""}</span>
 					{role == "STUDENT" ? (
 						<form
 							action={studentRegister}
-							className="flex flex-col p-8 justify-center"
+							className="flex flex-col p-2 md:p-8 justify-center"
 						>
 							<label htmlFor="email">EMAIL</label>
 							<input name="email" type="email" className="border-2" required />
@@ -114,14 +121,14 @@ export default function SignUp() {
 								className="border-2"
 								required
 							/>
-							<button type="submit" className="submit" onClick={() => {setMsg("")}}>
+							<button type="submit" className="submit" onClick={() => {setMsg("")}} disabled={loading}>
 								Submit
 							</button>
 						</form>
 					) : (
 						<form
 							action={teacherRegister}
-							className="flex flex-col p-8 justify-center"
+							className="flex flex-col p-2 md:p-8 justify-center"
 						>
 							<label htmlFor="email">EMAIL</label>
 							<input name="email" type="email" className="border-2" required />
@@ -136,7 +143,7 @@ export default function SignUp() {
 								className="border-2"
 								required
 							/>
-							<button type="submit" className="submit" onClick={() => {setMsg("")}}>
+							<button type="submit" className="submit" onClick={() => {setMsg("")}} disabled={loading}>
 								Submit
 							</button>
 						</form>
