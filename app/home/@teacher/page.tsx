@@ -86,8 +86,8 @@ export default function Teacher() {
 	}, [supabase]);
 
 	return (
-		<main className="flex  flex-col items-center bg-slate-50 w-[100vw] h-[100vh] py-4 lg:p-8 ">
-			<span className="text-[2em] max-w-[92%] w-[92%] lg:text-[4em] flex flex-wrap font-light relative h-auto p-2 lg:p-4 bg-slate-100 border-2 border-gray-800/[0.2] rounded-2xl ">
+		<div className="w-full flex flex-col items-center bg-slate-50 p-8 min-h-[100vh]">
+			<span className="text-[2em] max-w-[92%] w-[92%] lg:text-[4em] flex flex-wrap font-light relative h-auto p-2 lg:p-4 bg-slate-100 border-2 border-gray-800/[0.2] rounded-xl ">
 				<h1 className=" flex flex-row flex-wrap align-middle capitalize gap-x-3 h-auto">
 					<span>Welcome!</span>
 					<span className=" font-bold flex justify-center">
@@ -110,7 +110,7 @@ export default function Teacher() {
 				</h1>
 			</span>
 			<div className="flex flex-wrap flex-row lg:justify-normal justify-center gap-[2%] py-2 my-2 border-[#00000000] lg:border-t-2 w-[92%] lg:border-gray-700/[0.7]">
-				<div className="border-2 border-slate-400/[0.5] bg-white/[0.5] rounded-xl my-2 flex flex-col w-[92%] md:w-[30%] lg:h-[20em]">
+				<div className="border-2 border-slate-400/[0.5] bg-white/[0.5] rounded-xl my-2 flex flex-col w-[92vw] md:w-[30%] lg:h-[20em]">
 					<div className="p-2 lg:p-8">
 						<h1 className="flex justify-center items-center text-3xl border-gray-800">
 							Upload a Module
@@ -153,7 +153,7 @@ export default function Teacher() {
 										(error as Error).message ==
 										"Vercel Blob: Failed to  retrieve the client token"
 									) {
-										setMessage("Upload Failed, Incorrect file type");
+										setMessage("Upload Failed, Either the file exists or its not the correct type");
 									} else {
 										setMessage(
 											"Upload Failed, the file already exists or you are not authorized"
@@ -242,6 +242,6 @@ export default function Teacher() {
 					</div>
 				</div>
 			</div>
-		</main>
+		</div>
 	);
 }

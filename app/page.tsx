@@ -33,14 +33,14 @@ function Home() {
 		const res = await response.json();
 
 		if (res.error) {
-			console.log(res.error)
+			console.log(res.error);
 			if (res.error.status == 400) {
 				setMsg("No Account yet or Wrong Password");
-			}else if(res.error.status == 403){
-        setMsg("Check your Connection")
-      }else{
-        setMsg("An error occured")
-      }
+			} else if (res.error.status == 403) {
+				setMsg("Check your Connection");
+			} else {
+				setMsg("An error occured");
+			}
 		} else {
 			router.push("/home");
 		}
@@ -51,7 +51,7 @@ function Home() {
 			<section className="loginCard gap-y-4 px-2 py-4 md:p-8 flex flex-col justify-stretch align-middle rounded-3xl h-auto  w-[90vw] md:w-[56vw] lg:w-[40vw]">
 				<div className="flex flex-col p-2 md:p-8 h-auto text-white rounded-lg w-auto justify-between align-middle transition-all ease-in">
 					<span className="flex flex-col w-full items-center justify-center align-middle text-2xl">
-						<div id="logo" className="scale-[1.2]"/>
+						<div id="logo" className="scale-[1.2]" />
 						<h1 className="mb-3 mt-2">LOGIN</h1>
 					</span>
 					<span className="flex w-full items-center justify-center h-[2rem] mb-4">
@@ -68,29 +68,33 @@ function Home() {
 								</svg>
 							</span>
 						) : (
-							<span className={msg == "" ? "border-2 border-none" :  "p-2 bg-[#ccabab]/[0.5] text-white rounded-md border-2 border-gray-300"}>{msg}</span>
+							<span
+								className={
+									msg == ""
+										? "border-2 border-none"
+										: "p-2 bg-[#ccabab]/[0.5] text-white rounded-md border-2 border-gray-300"
+								}
+							>
+								{msg}
+							</span>
 						)}
 					</span>
 
 					<form
-						action={signIn}
+						action={(data: FormData) => {
+							setMsg("Loading");
+							signIn(data);
+						}}
 						className="flex flex-col p-2 md:p-4 justify-center"
 					>
 						<label htmlFor="email">EMAIL</label>
-						<input name="email" type="email"  required />
+						<input name="email" type="email" required />
 						<label htmlFor="password">PASSWORD</label>
-						<input
-							name="password"
-							type="password"
-							
-							required
-						/>
+						<input name="password" type="password" required />
 						<button
 							type="submit"
 							className="submit"
-							onClick={() => {
-								setMsg("Loading");
-							}}
+							disabled={msg == "Loading"}
 						>
 							Submit
 						</button>
@@ -98,7 +102,7 @@ function Home() {
 				</div>
 				<Link
 					className="bg-white/[0.25] text-white rounded-md p-2 w-auto flex justify-center"
-					href={'/register'}
+					href={"/register"}
 				>
 					No Account yet? Click here to Register
 				</Link>

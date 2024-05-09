@@ -63,7 +63,7 @@ export default function Student() {
 	};
 
 	return (
-		<main className="flex  flex-col items-center bg-slate-50 w-[100vw] h-[100vh] py-4 lg:p-8 ">
+		<div className="flex  flex-col items-center bg-slate-50 w-[100vw] h-[100vh] py-4 lg:p-8 ">
 			<div className="dashboard relative z-0"></div>
 			<span className="text-[2em] max-w-[92%] w-[92%] lg:text-[4em] flex flex-wrap font-light relative h-auto p-2 lg:p-4 bg-slate-100 border-2 border-gray-800/[0.2] rounded-2xl ">
 				<h1 className=" flex flex-row flex-wrap align-middle capitalize gap-x-3 h-auto">
@@ -107,7 +107,7 @@ export default function Student() {
 								setSearch(event.target.value);
 							}, 500);
 						}}
-						className="p-2 border-gray-300 border-[1px] rounded-lg w-[90%] md:w-[50vw]"
+						className="p-2 border-gray-300 border-[1px] rounded-lg w-[90%] md:w-[50vw] text-black"
 					></input>
 				</span>
 				<div className="flex flex-wrap justify-center items-center gap-8 m-2 p-2 lg:m-8 lg:p-8 rounded-3xl border-2 bg-slate-100 border-gray-200">
@@ -144,6 +144,6 @@ export default function Student() {
 					)}
 				</div>
 			</div>
-		</main>
+		</div>
 	);
 }
