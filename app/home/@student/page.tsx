@@ -63,9 +63,9 @@ export default function Student() {
 	};
 
 	return (
-		<main className="bg-slate-50 h-[100vh] p-8 ">
+		<main className="flex  flex-col items-center bg-slate-50 w-[100vw] h-[100vh] py-4 lg:p-8 ">
 			<div className="dashboard relative z-0"></div>
-			<span className="text-[4em] flex flex-wrap font-light relative w-auto h-auto">
+			<span className="text-[2em] max-w-[92%] w-[92%] lg:text-[4em] flex flex-wrap font-light relative h-auto p-2 lg:p-4 bg-slate-100 border-2 border-gray-800/[0.2] rounded-2xl ">
 				<h1 className=" flex flex-row flex-wrap align-middle capitalize gap-x-3 h-auto">
 					<span>Welcome!</span>
 					<span className=" font-bold flex justify-center">
@@ -91,8 +91,8 @@ export default function Student() {
 					</span>
 				</h1>
 			</span>
-			<div className="border-t-2 border-gray-400 flex flex-col">
-				<h1 className="text-3xl p-8 text-gray-800">Your Modules</h1>
+			<div className="flex flex-col my-2 p-4 w-[92%] max-w-[92%] border-gray-500/[0.4] rounded-xl border-2">
+				<h1 className="flex md:block justify-center items-center text-3xl p-4 lg:p-8 text-gray-800">Your Modules</h1>
 				<span className="w-full flex flex-row content-center flex-wrap items-center justify-center  mb-4">
 					<label htmlFor="search" className="pr-2">
 						Search
