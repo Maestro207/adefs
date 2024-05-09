@@ -39,16 +39,15 @@ export default function HomeLayout({
 	}, [])
 	
 	return (
-		<main className="relative">
+		<>
 			<Header />
-			<div className="dashboard absolute z-0 h-[100vh] w-[100vw] opacity-[.075]"></div>
-			<div className="absolute z-10 w-[98vw] h-auto">
+			<div className="flex flex-col items-center relative bg-slate-50 w-[100vw] h-[100vh] py-2 lg:p-4">
 			{
 				role == "teacher" ? teacher :
 				role == "student" ? student :
 				role == "admin" ? admin : children	
 			}
 			</div>
-		</main>
+		</>
 	);
 }
