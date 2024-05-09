@@ -33,8 +33,9 @@ function Home() {
 		const res = await response.json();
 
 		if (res.error) {
+			console.log(res.error)
 			if (res.error.status == 400) {
-				setMsg("No Existing Account yet!");
+				setMsg("No Existing Account yet");
 			}else if(res.error.status == 403){
         setMsg("Check your Connection")
       }else{
@@ -51,7 +52,7 @@ function Home() {
 				<div className="flex flex-col p-2 md:p-8 h-auto bg-white/[0.92] border-2 rounded-lg w-auto justify-between align-middle transition-all ease-in">
 					<span className="flex flex-col w-full items-center justify-center align-middle text-2xl">
 						<div id="logo" />
-						<h1>LOGIN</h1>
+						<h1 className="mb-3 mt-2">LOGIN</h1>
 					</span>
 					<span className="flex w-full items-center justify-center h-[2rem]">
 						{msg == "Loading" ? (
@@ -67,7 +68,7 @@ function Home() {
 								</svg>
 							</span>
 						) : (
-							msg
+							<span className={msg == "" ? "border-2" : "p-2 bg-[#d4e9ff]/[0.5] rounded-md border-2 border-gray-300"}>{msg}</span>
 						)}
 					</span>
 
@@ -95,14 +96,12 @@ function Home() {
 						</button>
 					</form>
 				</div>
-				<button
-					onClick={() => {
-						router.push("/register");
-					}}
-					className="text-white text-lg"
+				<Link
+					className="bg-white/[0.1] text-white rounded-lg p-2 w-auto flex justify-center"
+					href={'/register'}
 				>
-					Register
-				</button>
+					No Account yet? Click here to Register
+				</Link>
 			</section>
 		</main>
 	);
