@@ -31,7 +31,7 @@ export default function File({
 			>
 				Download Module
 			</a>
-			<button disabled={loading} onClick={async ()=>{ await callback(url, setLoading)}} className="bg-red-500 flex justify-center items-center fill-white mt-2 p-2 rounded-2xl text-white hover:bg-white hover:text-black border-[#00000000] border-2 hover:border-red-500">
+			<button disabled={loading} onClick={async ()=>{ await callback(url, setLoading)}} className="bg-red-500 flex justify-center items-center fill-white mt-2 p-2 rounded-2xl text-white hover:bg-white hover:text-black hover:fill-black border-[#00000000] border-2 hover:border-red-500">
 				{loading ? <span id="loading">
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
