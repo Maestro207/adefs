@@ -71,7 +71,7 @@ export default function SignUp() {
 
 	return (
 		<main id="register" className=" h-[100vh] flex justify-center items-center">
-			<section className="regCard transition-all ease-in gap-y-4 p-2 md:p-6 flex flex-col justify-stretch align-middle rounded-3xl h-auto w-[90vw] md:w-[56vw] lg:w-[40vw]">
+			<section className="regCard transition-all ease-in gap-y-4 p-2 md:p-6 flex flex-col justify-stretch align-middle rounded-3xl h-auto w-[98vw] md:w-[56vw] lg:w-[40vw]">
 				<span className="flex flex-row p-2 justify-center gap-8">
 					<button
 						className={`p-2 border-[1px] rounded-lg w-full text-2xl font-light text-white ${
@@ -117,7 +117,7 @@ export default function SignUp() {
 								<path d="M320-160h320v-120q0-66-47-113t-113-47q-66 0-113 47t-47 113v120Zm160-360q66 0 113-47t47-113v-120H320v120q0 66 47 113t113 47ZM160-80v-80h80v-120q0-61 28.5-114.5T348-480q-51-32-79.5-85.5T240-680v-120h-80v-80h640v80h-80v120q0 61-28.5 114.5T612-480q51 32 79.5 85.5T720-280v120h80v80H160Zm320-80Zm0-640Z" />
 							</svg>
 						) : (
-							msg
+							<span className={msg == "" ? "border-2" : "p-2 bg-[#d4e9ff]/[0.5] rounded-md border-2 border-gray-300"}>{msg}</span>
 						)}
 					</span>
 					{role == "STUDENT" ? (
@@ -223,10 +223,10 @@ export default function SignUp() {
 					)}
 				</div>
 				<Link
-					className="bg-white rounded-lg p-2 w-auto"
+					className="bg-white/[0.1] text-white rounded-lg p-2 w-auto flex justify-center"
 					href={'/'}
 				>
-					Have an Account? Click Here to Login.
+					Have an Account? Click Here to Login
 				</Link>
 			</section>
 		</main>
