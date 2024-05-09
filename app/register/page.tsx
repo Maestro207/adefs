@@ -72,9 +72,9 @@ export default function SignUp() {
 	return (
 		<main id="register" className=" h-[100vh] flex justify-center items-center">
 			<section className="regCard transition-all ease-in gap-y-4 p-2 md:p-6 flex flex-col justify-stretch align-middle rounded-3xl h-auto w-[98vw] md:w-[56vw] lg:w-[40vw]">
-				<span className="flex flex-row p-2 justify-center gap-8">
+				<span className="flex flex-row p-4 justify-center gap-8">
 					<button
-						className={`p-2 border-[1px] rounded-lg w-full text-2xl font-light text-white ${
+						className={`px-2 py-4 border-[1px] rounded-lg w-full text-2xl font-light text-white ${
 							role != "STUDENT"
 								? "border-black bg-red-500 text-xl font-light "
 								: "border-gray-100"
@@ -87,7 +87,7 @@ export default function SignUp() {
 						TEACHER
 					</button>
 					<button
-						className={`p-2 border-[1px] rounded-lg w-full text-xl font-light text-white ${
+						className={`px-2 py-4 border-[1px] rounded-lg w-full text-xl font-light text-white ${
 							role == "STUDENT" ? "border-black bg-red-500 " : "border-gray-100"
 						} `}
 						onClick={() => {
@@ -98,7 +98,7 @@ export default function SignUp() {
 						STUDENT
 					</button>
 				</span>
-				<div className="flex flex-col p-2 md:p-2 h-auto bg-white border-2 rounded-lg w-auto justify-between align-middle transition-all ease-in">
+				<div className="flex flex-col p-2 md:p-2 h-auto bg-white/[0.92] border-2 rounded-lg w-auto justify-between align-middle transition-all ease-in">
 					<span className="flex justify-center align-middle text-3xl text-light pt-2 my-2">
 						REGISTER
 					</span>
@@ -127,7 +127,7 @@ export default function SignUp() {
 								setMsg("Loading");
 								studentRegister(data);
 							}}
-							className="flex flex-col p-2 md:p-2 justify-center"
+							className="flex flex-col p-2 md:p-4 justify-center"
 						>
 							<label htmlFor="email">EMAIL</label>
 							<input
@@ -178,7 +178,7 @@ export default function SignUp() {
 								setMsg("Loading");
 								teacherRegister(data);
 							}}
-							className="flex flex-col p-2 md:p-2 justify-center"
+							className="flex flex-col p-2 md:p-4 justify-center"
 						>
 							<label htmlFor="email">EMAIL</label>
 							<input
