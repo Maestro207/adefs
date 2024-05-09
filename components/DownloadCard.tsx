@@ -12,7 +12,7 @@ export default function File({
 	name: string;
 }) {
 	return (
-		<div className="bg-white p-8 flex flex-col break-words wrap rounded-2xl border-[1px] max-w-[90%] md:max-w-[30%] text-balance border-gray-200">
+		<div className="bg-white p-8 flex flex-col break-words wrap rounded-2xl border-[1px] max-w-[90%] md:max-w-[30%] text-balance border-gray-200 hover:border-gray-800 transition-all ease">
 			<span className="text-3xl bolder">
 				<h1>{filename}</h1>
 			</span>
