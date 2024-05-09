@@ -4,11 +4,12 @@ import File from "@/components/UploadCard";
 import { createClient } from "@/utils/supabase/client";
 import { PutBlobResult } from "@vercel/blob";
 import { upload } from "@vercel/blob/client";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
+import { Dispatch, SetStateAction, useCallback, useEffect, useRef, useState } from "react";
 
 export default function Teacher() {
 	const supabase = createClient();
-
+	const router = useRouter()
 	const inputFileRef = useRef<HTMLInputElement>(null);
 	const [blob, setBlob] = useState<PutBlobResult | null>(null);
 	const [message, setMessage] = useState("");
@@ -30,7 +31,8 @@ export default function Teacher() {
 	>(null);
 	const [user, setUser] = useState("");
 
-	const deleteFile = async (url: string) => {
+	const deleteFile = async (url: string, set: Dispatch<SetStateAction<boolean>>) => {
+		set(true)
 		const res = await fetch("/api/module/delete", {
 			method: "DELETE",
 			body: JSON.stringify({
@@ -42,6 +44,7 @@ export default function Teacher() {
 		});
 		if (typeof updated != "undefined") {
 			setUploads(updated);
+			set(false)
 		}
 	};
 
@@ -68,6 +71,9 @@ export default function Teacher() {
 	useEffect(() => {
 		getUploads();
 		getUser();
+		if(!supabase.auth.getUser()){
+			router.push('/')
+		}
 	}, [supabase]);
 
 	return (
