@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import "@/app/globals.css";
+import Link from "next/link";
 
 export default function SignUp() {
 	const [msg, setMsg] = useState("");
@@ -40,6 +41,8 @@ export default function SignUp() {
 	};
 
 	const teacherRegister = async (data: FormData) => {
+		setLoading(true);
+		setMsg("Loading");
 		const response = await fetch("api/auth/register/teacher", {
 			method: "POST",
 			body: data,
@@ -96,10 +99,27 @@ export default function SignUp() {
 					</button>
 				</span>
 				<div className="flex flex-col p-2 md:p-2 h-auto bg-white border-2 rounded-lg w-auto justify-between align-middle transition-all ease-in">
-					<span className="flex justify-center align-middle text-3xl text-light pt-2">
+					<span className="flex justify-center align-middle text-3xl text-light pt-2 my-2">
 						REGISTER
 					</span>
-					<span className="h-[1.5rem]">{msg}</span>
+					<span
+						id={`${loading ? "loading" : ""}`}
+						className="flex w-full items-center justify-center h-[2rem]"
+					>
+						{msg == "Loading" ? (
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								height="24px"
+								viewBox="0 -960 960 960"
+								width="24px"
+								fill="#222222"
+							>
+								<path d="M320-160h320v-120q0-66-47-113t-113-47q-66 0-113 47t-47 113v120Zm160-360q66 0 113-47t47-113v-120H320v120q0 66 47 113t113 47ZM160-80v-80h80v-120q0-61 28.5-114.5T348-480q-51-32-79.5-85.5T240-680v-120h-80v-80h640v80h-80v120q0 61-28.5 114.5T612-480q51 32 79.5 85.5T720-280v120h80v80H160Zm320-80Zm0-640Z" />
+							</svg>
+						) : (
+							msg
+						)}
+					</span>
 					{role == "STUDENT" ? (
 						<form
 							action={(data: FormData) => {
@@ -110,15 +130,23 @@ export default function SignUp() {
 							className="flex flex-col p-2 md:p-2 justify-center"
 						>
 							<label htmlFor="email">EMAIL</label>
-							<input name="email" 
-							minLength={12}
-							maxLength={30}
-							type="email" className="border-2" required />
+							<input
+								name="email"
+								minLength={12}
+								maxLength={30}
+								type="email"
+								className="border-2"
+								required
+							/>
 							<label htmlFor="name">NAME</label>
-							<input name="name" 
-							minLength={8}
-							maxLength={30}
-							type="text" className="border-2" required />
+							<input
+								name="name"
+								minLength={8}
+								maxLength={30}
+								type="text"
+								className="border-2"
+								required
+							/>
 							<label htmlFor="course">COURSE</label>
 							<select name="course" className="border-2" required>
 								<option value="bscs">BSCS</option>
@@ -153,10 +181,14 @@ export default function SignUp() {
 							className="flex flex-col p-2 md:p-2 justify-center"
 						>
 							<label htmlFor="email">EMAIL</label>
-							<input name="email" 
-							minLength={12}
-							maxLength={30}
-							 type="email" className="border-2" required />
+							<input
+								name="email"
+								minLength={12}
+								maxLength={30}
+								type="email"
+								className="border-2"
+								required
+							/>
 							<label htmlFor="name">NAME</label>
 							<input
 								name="name"
@@ -167,10 +199,14 @@ export default function SignUp() {
 								maxLength={30}
 							/>
 							<label htmlFor="course">COURSE</label>
-							<input name="course" 
-							minLength={4}
-							maxLength={12}
-							type="text" className="border-2" required />
+							<input
+								name="course"
+								minLength={4}
+								maxLength={12}
+								type="text"
+								className="border-2"
+								required
+							/>
 							<label htmlFor="password">PASSWORD</label>
 							<input
 								name="password"
@@ -186,14 +222,12 @@ export default function SignUp() {
 						</form>
 					)}
 				</div>
-				<button
+				<Link
 					className="bg-white rounded-lg p-2 w-auto"
-					onClick={() => {
-						router.push("/");
-					}}
+					href={'/'}
 				>
 					Have an Account? Click Here to Login.
-				</button>
+				</Link>
 			</section>
 		</main>
 	);

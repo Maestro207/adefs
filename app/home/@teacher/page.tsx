@@ -72,105 +72,138 @@ export default function Teacher() {
 
 	return (
 		<main className="bg-none h-[100vh] p-8 z-10	">
-			
 			<span className="text-[4em] font-light block relative w-auto h-auto">
 				<h1 className=" capitalize">Welcome! {user}</h1>
 			</span>
 			<div className="p-8 border-t-[1px] border-gray-400">
-				<h1 className="text-3xl border-gray-800">
-					Upload a Module
-				</h1>
+				<h1 className="text-3xl border-gray-800">Upload a Module</h1>
 			</div>
-			<form
-				onSubmit={async (event) => {
-					event.preventDefault();
+			<div className="flex flex-row h-[5em] items-center">
+				<form
+					onSubmit={async (event) => {
+						event.preventDefault();
 
-					setMessage("Uploading");
+						setMessage("Uploading");
 
-					if (!inputFileRef.current?.files) {
-						throw new Error("No file selected");
-					}
+						if (!inputFileRef.current?.files) {
+							throw new Error("No file selected");
+						}
 
-					const file = inputFileRef.current.files[0];
+						const file = inputFileRef.current.files[0];
 
-					try {
-						const newBlob = await upload(file.name, file, {
-							access: "public",
-							handleUploadUrl: "/api/module/upload",
-						});
-
-						if (newBlob) {
-							const data = {
-								url: newBlob.url,
-								filename: file.name,
-								name: user,
-							};
-							const res = await fetch("/api/module/update", {
-								body: JSON.stringify(data),
-								method: "POST",
+						try {
+							const newBlob = await upload(file.name, file, {
+								access: "public",
+								handleUploadUrl: "/api/module/upload",
 							});
-							setBlob(newBlob);
-							const updated = uploads;
-							updated?.push(data as never);
-							setUploads(updated);
-							setMessage("File Uploaded");
-						} else {
-							setMessage("Upload Failed");
+
+							if (newBlob) {
+								const data = {
+									url: newBlob.url,
+									filename: file.name,
+									name: user,
+								};
+								const res = await fetch("/api/module/update", {
+									body: JSON.stringify(data),
+									method: "POST",
+								});
+								setBlob(newBlob);
+								const updated = uploads;
+								updated?.push(data as never);
+								setUploads(updated);
+								setMessage("File Uploaded");
+							} else {
+								setMessage("Upload Failed");
+							}
+						} catch (error) {
+							if (
+								(error as Error).message ==
+								"Vercel Blob: Failed to  retrieve the client token"
+							) {
+								setMessage("Upload Failed, Incorrect file type");
+							} else {
+								setMessage(
+									"Upload Failed, the file already exists or you are not authorized"
+								);
+							}
+						} finally {
+							setTimeout(() => {
+								setMessage("");
+							}, 5000);
 						}
-					} catch (error) {
-						if (
-							(error as Error).message ==
-							"Vercel Blob: Failed to  retrieve the client token"
-						) {
-							setMessage("Upload Failed, Incorrect file type");
-						} else {
-							setMessage(
-								"Upload Failed, the file already exists or you are not authorized"
-							);
-						}
-					} finally {
-						setTimeout(() => {
-							setMessage("");
-						}, 5000);
-					}
-				}}
-			>
-				<input
-					name="file"
-					ref={inputFileRef}
-					type="file"
-					className="bg-white/[0.2] border-gray-200 border-[1px] p-2 m-4 rounded-2xl"
-					accept=".pdf, .docx, application/pdf, application/msword,
-					application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-					required
-				/>
-				<button
-					type="submit"
-					className="py-2 px-4 rounded-full bg-red-500 text-white border-gray-200 border-[1px]"
-					disabled={message == "Uploading" ? true : false}
+					}}
 				>
-					Upload
-				</button>
-			</form>
-			<div className="text-xl font-light p-2 h-[2rem]">{message}</div>
+					<input
+						name="file"
+						ref={inputFileRef}
+						type="file"
+						className="bg-white/[0.2] border-gray-200 border-[1px] p-2 m-4 rounded-2xl"
+						accept=".pdf, .docx, application/pdf, application/msword,
+					application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+						required
+					/>
+					<button
+						type="submit"
+						className="py-2 px-4 rounded-full bg-red-500 text-white border-gray-200 border-[1px]"
+						disabled={message == "Uploading" ? true : false}
+					>
+						Upload
+					</button>
+				</form>
+				<div className="text-xl font-light py-2 pl-4 pr-2">
+					<span
+						id={`${message == "Uploading" ? "loading" : ""}`}
+						className="flex w-full items-center justify-center "
+					>
+						{message == "Uploading" ? (
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								height="24px"
+								viewBox="0 -960 960 960"
+								width="24px"
+								fill="#222222"
+							>
+								<path d="M320-160h320v-120q0-66-47-113t-113-47q-66 0-113 47t-47 113v120Zm160-360q66 0 113-47t47-113v-120H320v120q0 66 47 113t113 47ZM160-80v-80h80v-120q0-61 28.5-114.5T348-480q-51-32-79.5-85.5T240-680v-120h-80v-80h640v80h-80v120q0 61-28.5 114.5T612-480q51 32 79.5 85.5T720-280v120h80v80H160Zm320-80Zm0-640Z" />
+							</svg>
+						) : (
+							message
+						)}
+					</span>
+				</div>
+			</div>
 			<div className="border-t-2 border-gray-400">
 				<h1 className="text-3xl p-8 text-gray-800">Your Modules</h1>
 				<div className="flex flex-wrap justify-center items-center gap-8 m-2 p-2 lg:m-8 lg:p-8 rounded-3xl border-2 bg-slate-100 border-gray-200">
-					{uploads == null
-						? "Loading"
-						: uploads.length == 0
-						? "No Modules"
-						: uploads.map((file) => {
-								return (
-									<File
-										key={file.url}
-										name={file.name}
-										url={file.url}
-										filename={file.filename}
-										callback={deleteFile}
-									/>
-								);
-						  })}
+					{uploads == null ? (
+						<span
+							id="loading"
+							className="flex w-full items-center justify-center "
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								height="24px"
+								viewBox="0 -960 960 960"
+								width="24px"
+								fill="#222222"
+							>
+								<path d="M320-160h320v-120q0-66-47-113t-113-47q-66 0-113 47t-47 113v120Zm160-360q66 0 113-47t47-113v-120H320v120q0 66 47 113t113 47ZM160-80v-80h80v-120q0-61 28.5-114.5T348-480q-51-32-79.5-85.5T240-680v-120h-80v-80h640v80h-80v120q0 61-28.5 114.5T612-480q51 32 79.5 85.5T720-280v120h80v80H160Zm320-80Zm0-640Z" />
+							</svg>
+						</span>
+					) : uploads.length == 0 ? (
+						"No Modules"
+					) : (
+						uploads.map((file) => {
+							return (
+								<File
+									key={file.url}
+									name={file.name}
+									url={file.url}
+									filename={file.filename}
+									callback={deleteFile}
+								/>
+							);
+						})
+					)}
 				</div>
 			</div>
 		</main>
