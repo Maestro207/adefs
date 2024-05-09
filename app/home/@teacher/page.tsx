@@ -78,7 +78,7 @@ export default function Teacher() {
 			</span>
 			<div className="p-8 border-t-[1px] border-gray-400">
 				<h1 className="text-3xl border-gray-800">
-					Upload a Module (pdf only!)
+					Upload a Module
 				</h1>
 			</div>
 			<form
@@ -140,6 +140,8 @@ export default function Teacher() {
 					ref={inputFileRef}
 					type="file"
 					className="bg-white/[0.2] border-gray-200 border-[1px] p-2 m-4 rounded-2xl"
+					accept=".pdf, .docx, application/pdf, application/msword,
+					application/vnd.openxmlformats-officedocument.wordprocessingml.document"
 					required
 				/>
 				<button
@@ -150,7 +152,7 @@ export default function Teacher() {
 					Upload
 				</button>
 			</form>
-			<div className="text-xl font-light p-8">{message}</div>
+			<div className="text-xl font-light p-2 h-[2rem]">{message}</div>
 			<div className="border-t-2 border-gray-400">
 				<h1 className="text-3xl p-8 text-gray-800">Your Modules</h1>
 				<div className="flex flex-wrap justify-center items-center gap-8 m-2 p-2 lg:m-8 lg:p-8 rounded-3xl border-2 bg-slate-100 border-gray-200">

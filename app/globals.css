@@ -18,7 +18,7 @@
 
 body {
 	background: white;
-	font-size: 12px	;
+	font-size: 12px;
 }
 
 .header {
@@ -55,8 +55,8 @@ body {
 .regCard {
 	/* From https://css.glass */
 /* From https://css.glass */
-background: rgba(56, 56, 56, 0.4);
-border-radius: 16px;
+background: rgba(56, 56, 56, 0.75);
+border-radius: 2px;
 box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 border: 1px solid rgba(56, 56, 56, 0.3);
 }
@@ -64,8 +64,8 @@ border: 1px solid rgba(56, 56, 56, 0.3);
 .loginCard {
 	/* From https://css.glass */
 /* From https://css.glass */
-background: rgba(32, 32, 32, .2);
-border-radius: 16px;
+background: rgba(32, 32, 32, .75);
+border-radius: 4px;
 box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 border: 1px solid rgba(56, 56, 56, 0.3);
 }
@@ -97,8 +97,8 @@ border: 1px solid rgba(56, 56, 56, 0.3);
 }
 
 #register input, #login input, select{
-	height: 2.5rem;
-	text-size: 1.25rem;
+	height: 2.75em;
+	text-size: 1.25em;
 	background-color: white;
 	border-radius: 8px;
 	border-color: #888899;
