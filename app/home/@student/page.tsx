@@ -7,7 +7,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 export default function Student() {
 	const supabase = createClient();
-	const router = useRouter()
+	const router = useRouter();
 
 	const inputFileRef = useRef<HTMLInputElement>(null);
 	const [downloads, setDownloads] = useState<
@@ -35,7 +35,6 @@ export default function Student() {
 		} else {
 			setDownloads([]);
 		}
-
 	}, [supabase]);
 
 	const getUser = useCallback(async () => {
@@ -48,13 +47,12 @@ export default function Student() {
 	useEffect(() => {
 		getUploads();
 		getUser();
-		if(!supabase.auth.getUser()){
-			router.push('/')
+		if (!supabase.auth.getUser()) {
+			router.push("/");
 		}
 	}, [supabase]);
 
 	const filterSearch = (name: string) => {
-
 		if (search == "") {
 			return true;
 		} else {
@@ -63,8 +61,10 @@ export default function Student() {
 	};
 
 	return (
-		<div id="backgroundPattern" className="w-full flex flex-col items-center absolute z-[10] p-2 lg:p-8 min-h-[100vh]">
-			
+		<div
+			id="backgroundPattern"
+			className="w-full flex flex-col items-center absolute z-[10] p-2 lg:p-8 min-h-[100vh]"
+		>
 			<div className="dashboard relative z-0"></div>
 			<span className="text-[2.5em] mb-4 max-w-[92%] w-[92%] lg:text-[4em] flex flex-wrap font-light relative h-auto p-2 border-b-[3px] border-[#222222] lg:p-4 ">
 				<h1 className=" flex flex-row flex-wrap align-middle capitalize gap-x-3 h-auto">
@@ -89,9 +89,9 @@ export default function Student() {
 				</h1>
 			</span>
 			<div className=" border-slate-300 rounded bg-white/[0.85] flex flex-col my-2 p-4 w-[92vw] lg:w-[92%] border-gray-500/[0.4]">
-			<h1 className="text-3xl p-2 m-2 text-gray-800 border-b-2 border-b-gray-300">
-						Your Modules
-					</h1>
+				<h1 className="text-3xl p-2 m-2 text-gray-800 border-b-2 border-b-gray-300">
+					Your Modules
+				</h1>
 				<span className="w-full flex flex-row content-center flex-wrap items-center justify-center md:justify-start mb-4">
 					<label htmlFor="search" className="pr-2">
 						Search
@@ -134,7 +134,9 @@ export default function Student() {
 							);
 						})
 					) : downloads.length == 0 ? (
-						"No Modules"
+						<div className="p-4 border-2 border-gray-200 bg-white">
+							No Modules
+						</div>
 					) : (
 						downloads
 							.filter((val) => filterSearch(val.filename))
