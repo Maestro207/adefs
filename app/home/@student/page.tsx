@@ -63,18 +63,15 @@ export default function Student() {
 	};
 
 	return (
-		<div className="flex  flex-col items-center bg-slate-50 w-[100vw] h-[100vh] py-4 lg:p-8 ">
+		<div id="backgroundPattern" className="w-full flex flex-col items-center absolute z-[10] p-2 lg:p-8 min-h-[100vh]">
+			
 			<div className="dashboard relative z-0"></div>
-			<span className="text-[2em] max-w-[92%] w-[92%] lg:text-[4em] flex flex-wrap font-light relative h-auto p-2 lg:p-4 bg-slate-100 border-2 border-gray-800/[0.2] rounded-2xl ">
+			<span className="text-[2em] mb-4 max-w-[92%] w-[92%] lg:text-[4em] flex flex-wrap font-light relative h-auto p-2 border-b-[3px] border-[#222222] lg:p-4 ">
 				<h1 className=" flex flex-row flex-wrap align-middle capitalize gap-x-3 h-auto">
 					<span>Welcome!</span>
-					<span className=" font-bold flex justify-center">
-						
+					<span className=" font-[500] flex justify-center">
 						{user == "" ? (
-							<span
-								id="loading"
-								className="flex justify-center h-[24px]"
-							>
+							<span id="loading" className="flex justify-center h-[24px]">
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
 									height="24px"
@@ -91,7 +88,7 @@ export default function Student() {
 					</span>
 				</h1>
 			</span>
-			<div className="flex flex-col my-2 p-4 w-[92%] max-w-[92%] border-gray-500/[0.4] rounded-xl border-2">
+			<div className=" border-slate-300 rounded bg-white/[0.85] flex flex-col my-2 p-4 w-[92vw] lg:w-[92%] border-gray-500/[0.4]">
 				<h1 className="flex md:block justify-center items-center text-3xl p-4 lg:p-8 text-gray-800">Your Modules</h1>
 				<span className="w-full flex flex-row content-center flex-wrap items-center justify-center  mb-4">
 					<label htmlFor="search" className="pr-2">
@@ -110,7 +107,7 @@ export default function Student() {
 						className="p-2 border-gray-300 border-[1px] rounded-lg w-[90%] md:w-[50vw] text-black"
 					></input>
 				</span>
-				<div className="flex flex-wrap justify-center items-center gap-8 m-2 p-2 lg:m-8 lg:p-8 rounded-3xl border-2 bg-slate-100 border-gray-200">
+				<div className=" flex flex-wrap justify-center items-start gap-4 m-2 p-2 lg:m-8 lg:p-8 rounded-md border-2  border-gray-200">
 					{downloads == null ? (
 						<span
 							id="loading"
