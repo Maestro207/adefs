@@ -19,7 +19,7 @@ export default function File({
 
 	return (
 		<div className="bg-white p-2 lg:p-8 flex flex-col break-words wrap rounded-2xl border-[2px] max-w-[96%] md:max-w-[28%] lg:max-w-[48%] text-balance border-gray-200 hover:border-gray-800 transition-all ease duration-500">
-			<span className="text-xl lg:text-3xl bolder">
+			<span className="text-xl lg:text-3xl font-bold">
 				<h1>{filename}</h1>
 			</span>
 			<span className=" italic">Uploaded by: {name}</span>

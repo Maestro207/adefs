@@ -30,9 +30,68 @@ body {
 #backgroundPattern {
 	background-color: #ebe9e9;
 	opacity: 1;
-	background-image:  linear-gradient(30deg, #f0eded 12%, transparent 12.5%, transparent 87%, #f0eded 87.5%, #f0eded), linear-gradient(150deg, #f0eded 12%, transparent 12.5%, transparent 87%, #f0eded 87.5%, #f0eded), linear-gradient(30deg, #f0eded 12%, transparent 12.5%, transparent 87%, #f0eded 87.5%, #f0eded), linear-gradient(150deg, #f0eded 12%, transparent 12.5%, transparent 87%, #f0eded 87.5%, #f0eded), linear-gradient(60deg, #f0eded77 25%, transparent 25.5%, transparent 75%, #f0eded77 75%, #f0eded77), linear-gradient(60deg, #f0eded77 25%, transparent 25.5%, transparent 75%, #f0eded77 75%, #f0eded77);
+	background-image: linear-gradient(
+			30deg,
+			#f0eded 12%,
+			transparent 12.5%,
+			transparent 87%,
+			#f0eded 87.5%,
+			#f0eded
+		),
+		linear-gradient(
+			150deg,
+			#f0eded 12%,
+			transparent 12.5%,
+			transparent 87%,
+			#f0eded 87.5%,
+			#f0eded
+		),
+		linear-gradient(
+			30deg,
+			#f0eded 12%,
+			transparent 12.5%,
+			transparent 87%,
+			#f0eded 87.5%,
+			#f0eded
+		),
+		linear-gradient(
+			150deg,
+			#f0eded 12%,
+			transparent 12.5%,
+			transparent 87%,
+			#f0eded 87.5%,
+			#f0eded
+		),
+		linear-gradient(
+			60deg,
+			#f0eded77 25%,
+			transparent 25.5%,
+			transparent 75%,
+			#f0eded77 75%,
+			#f0eded77
+		),
+		linear-gradient(
+			60deg,
+			#f0eded77 25%,
+			transparent 25.5%,
+			transparent 75%,
+			#f0eded77 75%,
+			#f0eded77
+		);
 	background-size: 58px 102px;
 	background-position: 0 0, 0 0, 29px 51px, 29px 51px, 0 0, 29px 51px;
+}
+
+.loadingCard {
+	animation: 500ms ease-in-out 0s infinite alternate skeletonCard;
+}
+
+@keyframes skeletonCard {
+	0%{
+		background-color: #fefefe;
+	}100%{
+		background-color: #ffffff;
+	}
 }
 
 .module {
