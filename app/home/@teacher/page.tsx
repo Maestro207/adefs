@@ -86,11 +86,11 @@ export default function Teacher() {
 	}, [supabase]);
 
 	return (
-		<div className="w-full flex flex-col items-center bg-slate-50 p-8 min-h-[100vh]">
-			<span className="text-[2em] max-w-[92%] w-[92%] lg:text-[4em] flex flex-wrap font-light relative h-auto p-2 lg:p-4 bg-slate-100 border-2 border-gray-800/[0.2] rounded-xl ">
+		<div id="backgroundPattern" className="w-full flex flex-col items-center absolute z-[10] p-2 lg:p-8 min-h-[100vh]">
+			<span className="text-[2em] max-w-[92%] w-[92%] lg:text-[4em] flex flex-wrap font-light relative h-auto p-2 border-b-[3px] border-[#222222] lg:p-4 ">
 				<h1 className=" flex flex-row flex-wrap align-middle capitalize gap-x-3 h-auto">
 					<span>Welcome!</span>
-					<span className=" font-bold flex justify-center">
+					<span className=" font-[500] flex justify-center">
 						{user == "" ? (
 							<span id="loading" className="flex justify-center h-[24px]">
 								<svg
@@ -109,10 +109,10 @@ export default function Teacher() {
 					</span>
 				</h1>
 			</span>
-			<div className="flex flex-wrap flex-row lg:justify-normal justify-center gap-[2%] py-2 my-2 border-[#00000000] lg:border-t-2 w-[92%] lg:border-gray-700/[0.7]">
-				<div className="border-2 border-slate-400/[0.5] bg-white/[0.5] rounded-xl my-2 flex flex-col w-[92vw] md:w-[30%] lg:h-[20em]">
-					<div className="p-2 lg:p-8">
-						<h1 className="flex justify-center items-center text-3xl border-gray-800">
+			<div className="flex flex-wrap flex-row lg:justify-normal justify-center gap-[2.5%] py-2 my-2 border-[#00000000] w-[96%] lg:w-[92%] lg:border-gray-700/[0.7]">
+				<div className="border-2 border-slate-200 rounded bg-white/[0.85] my-2 flex flex-col w-[92vw] lg:w-[30%] lg:p-6 p-2 lg:h-[30rem]">
+					<div className="p-2 lg:p-4">
+						<h1 className="flex justify-center items-center text-3xl border-b-gray-600 ">
 							Upload a Module
 						</h1>
 					</div>
@@ -165,29 +165,29 @@ export default function Teacher() {
 									}, 5000);
 								}
 							}}
-							className="flex justify-center flex-col items-center"
+							className="flex justify-center flex-col items-center w-[80%]"
 						>
 							<input
 								name="file"
 								ref={inputFileRef}
 								type="file"
-								className="bg-white/[0.2] bg-white border-gray-200 border-[1px] p-2 my-4 lg:m-4 rounded-2xl"
+								className=" bg-white border-gray-400 border-[1px] p-2 my-4 lg:m-4 rounded-2xl"
 								accept=".pdf, .docx, application/pdf, application/msword,
 							application/vnd.openxmlformats-officedocument.wordprocessingml.document"
 								required
 							/>
 							<button
 								type="submit"
-								className="py-2 w-[10em] px-4 rounded-full bg-red-500 text-white border-gray-200 border-[1px]"
+								className="bg-red-500 flex justify-center items-center w-[10em] transition-all ease fill-white mt-2 p-2 rounded-2xl text-white hover:bg-white hover:text-black hover:fill-black border-[#00000000] border-2 hover:border-red-500"
 								disabled={message == "Uploading" ? true : false}
 							>
 								Upload
 							</button>
 						</form>
-						<div className="text-xl font-light py-2 pl-4 pr-2 h-[2.5rem]">
+						<div className="text-xl font-light py-2 pl-4 pr-2h-[2.5rem]">
 							<span
 								id={`${message == "Uploading" ? "loading" : ""}`}
-								className="flex w-full items-center justify-center "
+								className="flex w-full items-center justify-center h-[2.5rem]"
 							>
 								{message == "Uploading" ? (
 									<svg
@@ -206,9 +206,9 @@ export default function Teacher() {
 						</div>
 					</div>
 				</div>
-				<div className="flex flex-col my-2 p-4 w-[92%] max-w-[92%] lg:w-[68%] lg:max-w-[68%] border-gray-500/[0.4] rounded-xl border-2">
+				<div className=" border-slate-300 rounded bg-white/[0.85] flex flex-col my-2 p-4 w-[96vw] lg:w-[67.5%] lg:max-w-[70%] border-gray-500/[0.4]">
 					<h1 className="text-3xl p-8 text-gray-800">Your Modules</h1>
-					<div className="flex flex-wrap justify-center items-center gap-8 m-2 p-2 lg:m-8 lg:p-8 rounded-3xl border-2 bg-slate-100 border-gray-200">
+					<div className=" flex flex-wrap justify-center items-start gap-4 m-2 p-2 lg:m-8 lg:p-8 rounded-md border-2  border-gray-200">
 						{uploads == null ? (
 							<span
 								id="loading"

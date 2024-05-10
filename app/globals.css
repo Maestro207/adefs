@@ -19,16 +19,20 @@
 body {
 	background: white;
 	font-size: 12px;
-	overflow: scroll;
+	margin: 0;
 }
 
 ::-webkit-scrollbar {
-    width: 0px;
-    background: transparent; /* make scrollbar transparent */
+	width: 0px;
+	background: transparent; /* make scrollbar transparent */
 }
 
-.header {
-
+#backgroundPattern {
+	background-color: #ebe9e9;
+	opacity: 1;
+	background-image:  linear-gradient(30deg, #f0eded 12%, transparent 12.5%, transparent 87%, #f0eded 87.5%, #f0eded), linear-gradient(150deg, #f0eded 12%, transparent 12.5%, transparent 87%, #f0eded 87.5%, #f0eded), linear-gradient(30deg, #f0eded 12%, transparent 12.5%, transparent 87%, #f0eded 87.5%, #f0eded), linear-gradient(150deg, #f0eded 12%, transparent 12.5%, transparent 87%, #f0eded 87.5%, #f0eded), linear-gradient(60deg, #f0eded77 25%, transparent 25.5%, transparent 75%, #f0eded77 75%, #f0eded77), linear-gradient(60deg, #f0eded77 25%, transparent 25.5%, transparent 75%, #f0eded77 75%, #f0eded77);
+	background-size: 58px 102px;
+	background-position: 0 0, 0 0, 29px 51px, 29px 51px, 0 0, 29px 51px;
 }
 
 .module {
@@ -46,7 +50,7 @@ body {
 	border-radius: 16px;
 }
 
-#login{
+#login {
 	background-image: url("../assets/bg.png");
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -58,33 +62,33 @@ body {
 	background-repeat: no-repeat;
 }
 
-.regCard, .loginCard {
+.regCard,
+.loginCard {
 	/* From https://css.glass */
-/* From https://css.glass */
-background: rgba(32, 32, 32, 0.85);
-border-radius: 4px;
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-border: 2px solid rgba(64, 64, 64, 0.5);
+	/* From https://css.glass */
+	background: rgba(32, 32, 32, 0.85);
+	border-radius: 4px;
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+	border: 2px solid rgba(64, 64, 64, 0.5);
 }
 
-
-.submit{
+.submit {
 	font-size: 1.35em;
 	border-radius: 1em;
-	color: white;	
-	padding: .5em;
+	color: white;
+	padding: 0.5em;
 	margin-top: 1em;
 	font-weight: light;
-	background-color: rgba(242, 25, 25, .95);
+	background-color: rgba(242, 25, 25, 0.95);
 }
 
-.dashboard{
+.dashboard {
 	background-image: url("../assets/img/bg.png");
 	background-size: cover;
 	background-repeat: no-repeat;
 }
 
-#logo{
+#logo {
 	background-image: url("../assets/img/logo.png");
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -93,7 +97,9 @@ border: 2px solid rgba(64, 64, 64, 0.5);
 	border-radius: 9999px;
 }
 
-#register input, #login input, select{
+#register input,
+#login input,
+select {
 	height: 2.75em;
 	text-size: 1.25em;
 	background-color: white;
@@ -107,17 +113,19 @@ border: 2px solid rgba(64, 64, 64, 0.5);
 	margin-bottom: 1.25em;
 }
 
-#register input, #login input{
+#register input,
+#login input {
 	padding: 2.5px;
 }
 
-#register label, #login label{
+#register label,
+#login label {
 	font-weight: lighter;
 	font-size: 1.25em;
 }
 
-label::after{
-	content: ':';
+label::after {
+	content: ":";
 }
 
 @layer utilities {
@@ -126,14 +134,15 @@ label::after{
 	}
 }
 
-#loading{
+#loading {
 	animation: 2s ease 0.2s infinite normal loading;
 }
 
-@keyframes loading{
+@keyframes loading {
 	from {
 		transform: rotate(0deg);
-	}to{
+	}
+	to {
 		transform: rotate(360deg);
 	}
 }

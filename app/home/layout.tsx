@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import { createClient } from "@/utils/supabase/client";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
+import "@/app/globals.css"
 
 export default function HomeLayout({
 	children,
@@ -39,15 +40,16 @@ export default function HomeLayout({
 	}, [])
 	
 	return (
-		<>
-			<Header />
-			<div className="flex flex-col items-center relative bg-slate-50 w-[100vw] h-[100vh] py-2 lg:p-4">
+		<main className="bg-white">
+			{role ? <Header /> : ''}
+			
+			<div id="backgroundPattern" className="flex flex-col items-center  w-[100vw] h-[100vh]">
 			{
 				role == "teacher" ? teacher :
 				role == "student" ? student :
 				role == "admin" ? admin : children	
 			}
 			</div>
-		</>
+		</main>
 	);
 }
