@@ -36,7 +36,11 @@ export default function Teacher() {
 				url: string;
 		  }[]
 	>(null);
-	const [user, setUser] = useState("");
+	const [user, setUser] = useState<{
+		name: string;
+		year_level: string;
+		course: string;
+	} | null>(null);
 
 	const deleteFile = async (
 		url: string,
@@ -73,7 +77,7 @@ export default function Teacher() {
 	const getUser = useCallback(async () => {
 		const res = await (await fetch("/api/user", { method: "GET" })).json();
 		if (!res.error) {
-			setUser(res.data[0].name);
+			setUser(res.data[0]);
 		}
 	}, [supabase]);
 
@@ -90,30 +94,33 @@ export default function Teacher() {
 			id="backgroundPattern"
 			className="w-full flex flex-col items-center absolute z-[10] p-2 lg:p-8 min-h-[100vh]"
 		>
-			<span className="text-[2.5em] max-w-[92%] w-[92%] lg:text-[4em] flex flex-wrap font-light relative h-auto p-2 border-b-[3px] border-[#222222] lg:p-4 ">
-				<h1 className=" flex flex-row flex-wrap align-middle capitalize gap-x-3 h-auto">
-					<span>Welcome!</span>
-					<span className=" font-[500] flex justify-center">
-						{user == "" ? (
-							<span id="loading" className="flex justify-center h-[24px]">
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									height="24px"
-									viewBox="0 -960 960 960"
-									width="24px"
-									fill="#222222"
-								>
-									<path d="M320-160h320v-120q0-66-47-113t-113-47q-66 0-113 47t-47 113v120Zm160-360q66 0 113-47t47-113v-120H320v120q0 66 47 113t113 47ZM160-80v-80h80v-120q0-61 28.5-114.5T348-480q-51-32-79.5-85.5T240-680v-120h-80v-80h640v80h-80v120q0 61-28.5 114.5T612-480q51 32 79.5 85.5T720-280v120h80v80H160Zm320-80Zm0-640Z" />
-								</svg>
+			<span className="mb-4 max-w-[92%] w-[92%] h-[6em] lg:h-[10em] flex flex-col justify-center flex-wrap font-light relative border-b-[3px] border-[#222222] lg:p-4 ">
+					{user == null ? (
+						<span id="loading" className="flex justify-center">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								height="24px"
+								viewBox="0 -960 960 960"
+								width="24px"
+								fill="#222222"
+							>
+								<path d="M320-160h320v-120q0-66-47-113t-113-47q-66 0-113 47t-47 113v120Zm160-360q66 0 113-47t47-113v-120H320v120q0 66 47 113t113 47ZM160-80v-80h80v-120q0-61 28.5-114.5T348-480q-51-32-79.5-85.5T240-680v-120h-80v-80h640v80h-80v120q0 61-28.5 114.5T612-480q51 32 79.5 85.5T720-280v120h80v80H160Zm320-80Zm0-640Z" />
+							</svg>
+						</span>
+					) : (
+						<span className="flex flex-col justify-start py-4">
+							<span className=" text-[2.5em] capitalize lg:text-[4em] font-[400] flex ">
+								{user.name}
 							</span>
-						) : (
-							user
-						)}
-					</span>
-				</h1>
-			</span>
+							<span className=" gap-2 text-[1em] lg:text-[1.5em] font-[300] flex italic">
+								<span>Course: </span>
+								<span className="uppercase">{user.course}</span>
+							</span>
+						</span>
+					)}
+				</span>
 			<div className="flex flex-wrap flex-row lg:justify-normal justify-center gap-[2.5%] py-2 my-2 border-[#00000000] w-[96%] lg:w-[92%] lg:border-gray-700/[0.7]">
-				<div className="border-2 border-slate-200 rounded bg-white/[0.85] my-2 flex flex-col w-[92vw] lg:w-[30%] lg:p-6 p-2 lg:h-[30rem]">
+				<div className="border-2 border-slate-200 rounded bg-white/[0.75] my-2 flex flex-col w-[92vw] lg:w-[30%] lg:p-6 p-2 lg:h-[30rem]">
 					<div className="p-2 lg:p-4">
 						<h1 className="flex justify-center items-center text-3xl border-b-gray-600 ">
 							Upload a Module
@@ -211,7 +218,7 @@ export default function Teacher() {
 						</div>
 					</div>
 				</div>
-				<div className=" border-slate-300 rounded bg-white/[0.85] flex flex-col my-2 p-4 w-[92vw] lg:w-[67.5%] lg:max-w-[70%] border-gray-500/[0.4]">
+				<div className=" border-slate-300 rounded bg-white/[0.65] flex flex-col my-2 p-4 w-[92vw] lg:w-[67.5%] lg:max-w-[70%] border-gray-500/[0.4]">
 					<h1 className="text-3xl p-2 m-2 text-gray-800 border-b-2 border-b-gray-300">
 						Your Modules
 					</h1>
@@ -234,9 +241,9 @@ export default function Teacher() {
 							[0, 1, 2].map((n) => {
 								return (
 									<div
-										key={n}
-										className="loadingCard bg-gray-200 border-2 w-[28%] transition-all aspect-square"
-									/>
+									key={n}
+									className="loadingCard border-2 w-[80%] md:w-[28%] transition-all h-[6em] md:h-[10em] rounded-lg" 
+								/>
 								);
 							})
 						) : uploads.length == 0 ? (

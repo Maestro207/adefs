@@ -1,14 +1,49 @@
-export type Json =
-  | string
-  | number
-  | boolean
-  | null
-  | { [key: string]: Json | undefined }
-  | Json[]
-
 export type Database = {
   public: {
     Tables: {
+      module: {
+        Row: {
+          filename: string
+          id: number
+          url: string | null
+          uuid: string
+        }
+        Insert: {
+          filename: string
+          id?: number
+          url?: string | null
+          uuid?: string
+        }
+        Update: {
+          filename?: string
+          id?: number
+          url?: string | null
+          uuid?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "module_uuid_fkey"
+            columns: ["uuid"]
+            isOneToOne: false
+            referencedRelation: "modules"
+            referencedColumns: ["uuid"]
+          },
+          {
+            foreignKeyName: "module_uuid_fkey"
+            columns: ["uuid"]
+            isOneToOne: false
+            referencedRelation: "user"
+            referencedColumns: ["uuid"]
+          },
+          {
+            foreignKeyName: "module_uuid_fkey"
+            columns: ["uuid"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["uuid"]
+          },
+        ]
+      }
       notes: {
         Row: {
           id: number
@@ -21,6 +56,39 @@ export type Database = {
         Update: {
           id?: number
           title?: string | null
+        }
+        Relationships: []
+      }
+      student: {
+        Row: {
+          course: string
+          id: number
+          level: number | null
+        }
+        Insert: {
+          course: string
+          id?: number
+          level?: number | null
+        }
+        Update: {
+          course?: string
+          id?: number
+          level?: number | null
+        }
+        Relationships: []
+      }
+      teacher: {
+        Row: {
+          course: string
+          id: number
+        }
+        Insert: {
+          course: string
+          id?: number
+        }
+        Update: {
+          course?: string
+          id?: number
         }
         Relationships: []
       }
@@ -39,9 +107,75 @@ export type Database = {
         }
         Relationships: []
       }
+      user: {
+        Row: {
+          id: number
+          name: string | null
+          role: string | null
+          uuid: string
+        }
+        Insert: {
+          id?: number
+          name?: string | null
+          role?: string | null
+          uuid?: string
+        }
+        Update: {
+          id?: number
+          name?: string | null
+          role?: string | null
+          uuid?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_uuid_fkey"
+            columns: ["uuid"]
+            isOneToOne: true
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
-      [_ in never]: never
+      modules: {
+        Row: {
+          file_id: number | null
+          filename: string | null
+          name: string | null
+          url: string | null
+          uuid: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_uuid_fkey"
+            columns: ["uuid"]
+            isOneToOne: true
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      users: {
+        Row: {
+          course: string | null
+          email: string | null
+          id: number | null
+          name: string | null
+          role: string | null
+          uuid: string | null
+          year_level: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_uuid_fkey"
+            columns: ["uuid"]
+            isOneToOne: true
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Functions: {
       [_ in never]: never
