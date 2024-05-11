@@ -184,7 +184,8 @@ export default function Teacher() {
 								ref={inputFileRef}
 								type="file"
 								className=" bg-white border-gray-400 border-[1px] p-2 my-4 lg:m-4 rounded-2xl"
-								accept=".pdf, .docx, application/pdf, application/msword,
+								accept="application/vnd.ms-excel, application/vnd.ms-powerpoint,
+								text/plain, application/pdf, application/msword,
 							application/vnd.openxmlformats-officedocument.wordprocessingml.document"
 								required
 							/>

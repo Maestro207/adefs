@@ -34,8 +34,9 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
 
         return {
           addRandomSuffix: false,
-          allowedContentTypes: ['application/pdf','application/msword',
-          'application/vnd.openxmlformats-officedocument.wordprocessingml.document'],
+          allowedContentTypes: ['application/vnd.ms-excel', 'application/vnd.ms-powerpoint',
+          'text/plain', 'application/pdf', 'application/msword',
+        'application/vnd.openxmlformats-officedocument.wordprocessingml.document'],
           tokenPayload: JSON.stringify({
             // optional, sent to your server on upload completion
             // you could pass a user id from auth, or a value from clientPayload
