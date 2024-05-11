@@ -47,7 +47,7 @@ export default function Teacher() {
 		set: Dispatch<SetStateAction<boolean>>
 	) => {
 		set(true);
-		const res = await fetch("/api/module/delete", {
+		const res = await fetch("/api/module/teacher/delete", {
 			method: "DELETE",
 			body: JSON.stringify({
 				url: url,
@@ -64,7 +64,7 @@ export default function Teacher() {
 
 	const getUploads = useCallback(async () => {
 		const res = await (
-			await fetch("/api/module/list-ups", { method: "GET" })
+			await fetch("/api/module/teacher/list-ups", { method: "GET" })
 		).json();
 
 		if (!res.error) {
@@ -138,7 +138,7 @@ export default function Teacher() {
 								try {
 									const newBlob = await upload(file.name, file, {
 										access: "public",
-										handleUploadUrl: "/api/module/upload",
+										handleUploadUrl: "/api/module/teacher/upload",
 									});
 									if (newBlob) {
 										const data = {
@@ -146,7 +146,7 @@ export default function Teacher() {
 											filename: file.name,
 											name: user,
 										};
-										const res = await fetch("/api/module/update", {
+										const res = await fetch("/api/module/teacher/update", {
 											body: JSON.stringify(data),
 											method: "POST",
 										});

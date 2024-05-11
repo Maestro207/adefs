@@ -31,7 +31,7 @@ export default function Student() {
 
 	const getUploads = useCallback(async () => {
 		const res = await (
-			await fetch("/api/module/list-dls", { method: "GET" })
+			await fetch("/api/module/student/list-dls", { method: "GET" })
 		).json();
 
 		if (!res.error) {

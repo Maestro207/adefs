@@ -3,8 +3,9 @@
 import Header from "@/components/Header";
 import { createClient } from "@/utils/supabase/client";
 import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import "@/app/globals.css"
+import { RoleProvider } from "../provider";
 
 export default function HomeLayout({
 	children,
@@ -20,6 +21,8 @@ export default function HomeLayout({
 	const supabase = createClient()
 	const router = useRouter()
 	const [role, setRole] = useState("")
+
+	const userRole = useContext(RoleProvider)
 
 	const confirmUser = useCallback(async () => {
 		const response = await fetch("api/user", {
@@ -45,6 +48,7 @@ export default function HomeLayout({
 			
 			<div id="backgroundPattern" className="flex flex-col items-center  w-[100vw] h-[100vh]">
 			{
+				role == null ? children :
 				role == "teacher" ? teacher :
 				role == "student" ? student :
 				role == "admin" ? admin : children	
