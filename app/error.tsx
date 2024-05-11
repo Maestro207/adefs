@@ -6,5 +6,5 @@ import { useEffect } from "react"
 export default function Error() {
     const router = useRouter()
     useEffect(() => {router.push('/')})
-    return <>No page exists</>
+    return <div>No page exists</div>
 }

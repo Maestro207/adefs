@@ -6,8 +6,7 @@ export async function GET(){
 
     const { data, error } = await supabase
     .from('modules')
-    .select('*')
-    .eq('uuid', (await supabase.auth.getUser()).data.user?.id)
+    .select('name, filename, url')
 
     return NextResponse.json({ data, error })
 }

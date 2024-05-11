@@ -35,7 +35,7 @@ export default function SignUp() {
 			}
 			setLoading(false);
 		} else {
-			setMsg("Registerd Successfully");
+			setMsg("Registered Successfully");
 			setLoading(false);
 		}
 	};
