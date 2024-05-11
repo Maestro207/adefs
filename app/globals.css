@@ -82,16 +82,20 @@ body {
 	background-position: 0 0, 0 0, 29px 51px, 29px 51px, 0 0, 29px 51px;
 }
 
-.loadingCard {
-	animation: 500ms ease-in-out 0s infinite alternate skeletonCard;
-}
+.loadingCard:empty {
+	cursor: progress; 
+	background: 
+	  linear-gradient(0.25turn, transparent, #eee, transparent),
+	  linear-gradient(#fff, #fff);  
+	background-repeat: no-repeat;
+	background-position: -315px 0, 0 0, 0px 190px, 50px 195px; 
+	animation: skeletonCard 1.5s infinite;
+  }
 
 @keyframes skeletonCard {
-	0%{
-		background-color: #fefefe;
-	}100%{
-		background-color: #ffffff;
-	}
+	to {
+		background-position: 315px 0, 0 0, 0 190px, 50px 195px;
+	  }
 }
 
 .module {

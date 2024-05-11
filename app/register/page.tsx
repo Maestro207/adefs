@@ -72,14 +72,14 @@ export default function SignUp() {
 	return (
 		<main id="register" className=" h-[100vh] flex justify-center items-center">
 			<section className="regCard transition-all ease-in gap-y-4 p-2 md:p-6 flex flex-col justify-stretch align-middle rounded-3xl h-auto w-[98vw] md:w-[56vw] lg:w-[40vw]">
-			<span className="text-white flex justify-center align-middle text-3xl text-light pt-2 my-2">
-						REGISTER
-					</span>
+				<span className="text-white flex justify-center align-middle text-3xl text-light pt-2 my-2">
+					REGISTER
+				</span>
 				<span className="flex flex-row p-4 justify-center gap-8">
 					<button
-						className={`px-2 py-4 border-[1px] rounded-lg w-full text-2xl font-normal text-white ${
+						className={`px-3 py-6 border-[1px] rounded-lg w-full text-2xl font-normal text-white ${
 							role != "STUDENT"
-								? "border-black bg-red-500 text-xl font-light "
+								? "border-black bg-red-500 text-2xl "
 								: "border-gray-100"
 						} `}
 						onClick={() => {
@@ -91,7 +91,9 @@ export default function SignUp() {
 					</button>
 					<button
 						className={`px-2 py-4 border-[1px] rounded-lg w-full text-2xl font-normal text-white ${
-							role == "STUDENT" ? "border-black bg-red-500 " : "border-gray-100"
+							role == "STUDENT"
+								? "border-black bg-red-500 text-2xl  "
+								: "border-gray-100"
 						} `}
 						onClick={() => {
 							setRole("STUDENT");
@@ -102,7 +104,6 @@ export default function SignUp() {
 					</button>
 				</span>
 				<div className="flex flex-col p-2 md:p-2 h-auto text-white rounded-lg w-auto justify-between align-middle transition-all ease-in">
-					
 					{role == "STUDENT" ? (
 						<form
 							action={(data: FormData) => {
@@ -118,7 +119,6 @@ export default function SignUp() {
 								minLength={12}
 								maxLength={30}
 								type="email"
-								
 								required
 							/>
 							<label htmlFor="name">NAME</label>
@@ -127,15 +127,14 @@ export default function SignUp() {
 								minLength={8}
 								maxLength={30}
 								type="text"
-								
 								required
 							/>
 							<label htmlFor="course">COURSE</label>
-							<select name="course"  required>
+							<select name="course" required>
 								<option value="bscs">BSCS</option>
 							</select>
 							<label htmlFor="level">YEAR LEVEL</label>
-							<select name="level"  required>
+							<select name="level" required>
 								<option value="1">1st</option>
 								<option value="2">2nd</option>
 								<option value="3">3rd</option>
@@ -145,7 +144,6 @@ export default function SignUp() {
 							<input
 								name="password"
 								type="password"
-								
 								minLength={8}
 								maxLength={30}
 								required
@@ -169,14 +167,12 @@ export default function SignUp() {
 								minLength={12}
 								maxLength={30}
 								type="email"
-								
 								required
 							/>
 							<label htmlFor="name">NAME</label>
 							<input
 								name="name"
 								type="text"
-								
 								required
 								minLength={8}
 								maxLength={30}
@@ -187,14 +183,12 @@ export default function SignUp() {
 								minLength={4}
 								maxLength={12}
 								type="text"
-								
 								required
 							/>
 							<label htmlFor="password">PASSWORD</label>
 							<input
 								name="password"
 								type="password"
-								
 								minLength={8}
 								maxLength={30}
 								required
@@ -202,9 +196,7 @@ export default function SignUp() {
 							<button type="submit" className="submit" disabled={loading}>
 								Submit
 							</button>
-							
 						</form>
-						
 					)}
 					<span
 						id={`${loading ? "loading" : ""}`}
@@ -221,13 +213,21 @@ export default function SignUp() {
 								<path d="M320-160h320v-120q0-66-47-113t-113-47q-66 0-113 47t-47 113v120Zm160-360q66 0 113-47t47-113v-120H320v120q0 66 47 113t113 47ZM160-80v-80h80v-120q0-61 28.5-114.5T348-480q-51-32-79.5-85.5T240-680v-120h-80v-80h640v80h-80v120q0 61-28.5 114.5T612-480q51 32 79.5 85.5T720-280v120h80v80H160Zm320-80Zm0-640Z" />
 							</svg>
 						) : (
-							<span className={msg == "" ? "border-2 border-none" : "p-2 bg-[#ccabab]/[0.5] text-white rounded-md border-2 border-gray-300"}>{msg}</span>
+							<span
+								className={
+									msg == ""
+										? "border-2 border-none"
+										: "p-2 bg-[#ccabab]/[0.5] text-white rounded-md border-2 border-gray-300"
+								}
+							>
+								{msg}
+							</span>
 						)}
 					</span>
 				</div>
 				<Link
 					className="bg-white/[0.1] text-white rounded-lg p-2 w-auto flex justify-center"
-					href={'/'}
+					href={"/"}
 				>
 					Have an Account? Click Here to Login
 				</Link>
