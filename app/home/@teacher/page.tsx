@@ -144,7 +144,7 @@ export default function Teacher() {
 										const data = {
 											url: newBlob.url,
 											filename: file.name,
-											name: user,
+											name: user?.name,
 										};
 										const res = await fetch("/api/module/teacher/update", {
 											body: JSON.stringify(data),
@@ -197,10 +197,10 @@ export default function Teacher() {
 								Upload
 							</button>
 						</form>
-						<div className="text-xl font-light py-2 pl-4 pr-2h-[2.5rem]">
+						<div className="text-xl font-light py-2 pl-4 pr-2 h-auto">
 							<span
 								id={`${message == "Uploading" ? "loading" : ""}`}
-								className="flex w-full items-center justify-center h-[2.5rem]"
+								className="flex w-full items-center justify-center"
 							>
 								{message == "Uploading" ? (
 									<svg
